@@ -1,0 +1,6 @@
+framework module Pods_Brain_Remote {
+  umbrella header "Pods-Brain Remote-umbrella.h"
+
+  export *
+  module * { export * }
+}
