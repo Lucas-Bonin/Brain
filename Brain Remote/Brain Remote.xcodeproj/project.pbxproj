@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B484F394469143BD2E87BC6D /* Pods_Brain_Remote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E71FE1BD3AD82C59E9D1006 /* Pods_Brain_Remote.framework */; };
 		C28543841D119637008DFC0B /* FizedCollor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28543831D119637008DFC0B /* FizedCollor.swift */; };
+		E062DFB81D11C1DB00FD916E /* PostItContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E062DFB71D11C1DB00FD916E /* PostItContent.swift */; };
 		E07B86651D0F3E180094FF96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B86641D0F3E180094FF96 /* AppDelegate.swift */; };
 		E07B86671D0F3E180094FF96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B86661D0F3E180094FF96 /* ViewController.swift */; };
 		E07B866A1D0F3E180094FF96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07B86681D0F3E180094FF96 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		0CAC29229B53055AE27FB2AA /* Pods-Brain Remote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brain Remote.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Brain Remote/Pods-Brain Remote.release.xcconfig"; sourceTree = "<group>"; };
 		9E71FE1BD3AD82C59E9D1006 /* Pods_Brain_Remote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brain_Remote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C28543831D119637008DFC0B /* FizedCollor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FizedCollor.swift; sourceTree = "<group>"; };
+		E062DFB71D11C1DB00FD916E /* PostItContent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItContent.swift; sourceTree = "<group>"; };
 		E07B86611D0F3E180094FF96 /* Brain Remote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brain Remote.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07B86641D0F3E180094FF96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E07B86661D0F3E180094FF96 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			children = (
 				E0DB04611D103C92009911B5 /* VgcCustomElements.swift */,
 				C28543831D119637008DFC0B /* FizedCollor.swift */,
+				E062DFB71D11C1DB00FD916E /* PostItContent.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				E07B86671D0F3E180094FF96 /* ViewController.swift in Sources */,
 				E07B86651D0F3E180094FF96 /* AppDelegate.swift in Sources */,
 				C28543841D119637008DFC0B /* FizedCollor.swift in Sources */,
+				E062DFB81D11C1DB00FD916E /* PostItContent.swift in Sources */,
 				E0DB04641D103D82009911B5 /* SearchCentralViewController.swift in Sources */,
 				E0DB04621D103C92009911B5 /* VgcCustomElements.swift in Sources */,
 			);

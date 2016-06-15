@@ -27,14 +27,11 @@ class SendPostItViewController: UIViewController {
         VgcManager.elements.custom[CustomElementType.TextMessage.rawValue]!.value = textView.text!
         VgcManager.elements.custom[CustomElementType.IntCollor.rawValue]!.value = number
         
-        //TODO: Mandar uma mensagem do tipo DataMessage
-//        var value: Int = 323
-//        VgcManager.elements.custom[CustomElementType.DataMessage.rawValue]!.value = NSData(bytes: &value, length: sizeof(Int))
-        
         // Envia mensagem
         VgcManager.peripheral.sendElementState(VgcManager.elements.custom[CustomElementType.TextMessage.rawValue]!)
         //Send collor id
         VgcManager.peripheral.sendElementState(VgcManager.elements.custom[CustomElementType.IntCollor.rawValue]!)
+        
         //clean the text view
         self.textView.text = ""
         

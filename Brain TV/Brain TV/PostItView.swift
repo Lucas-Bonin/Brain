@@ -21,7 +21,8 @@ class PostItView: UIView {
         textLabel.textAlignment = .Center
         textLabel.font = textLabel.font.fontWithSize(20)
         textLabel.numberOfLines = 5
-        textLabel.font = UIFont(name: "Futura", size: 22)
+        textLabel.font = UIFont(name: "Futura-Medium", size: 22)
+        print("Familia Fonte: \(textLabel.font.familyName), Nome Fonte: \(textLabel.font.fontName)")
         
         super.init(frame: frame)
         
@@ -97,4 +98,23 @@ class PostItView: UIView {
 //        }
         print("tocou na tela")
     }
+    
+    //MARK: Animacoes na view
+    func highlightView(){
+        print("Aumentar o tamanho da view")
+        self.superview?.bringSubviewToFront(self)
+        
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.2, 1.2)
+        })
+    }
+    
+    func hideView(){
+        print("Diminuir tamanho da view")
+        UIView.animateWithDuration(0.1, animations: { () -> Void in
+            self.transform = CGAffineTransformMakeScale(1.0, 1.0)
+        })
+    }
+    
+    
 }

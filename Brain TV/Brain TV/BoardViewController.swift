@@ -12,6 +12,8 @@ import VirtualGameController
 class BoardViewController: UIViewController {
     
     var selectedView: UIView?
+    var highlightedView: PostItView?
+    
     var customViewMaster = UIView()
     
     //cursor
@@ -50,64 +52,8 @@ class BoardViewController: UIViewController {
         
         // Notificacoes quando um controle conectar ou desconectar
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector (BoardViewController.controllerDidConnect(_:)), name: VgcControllerDidConnectNotification, object: nil)
-    }
-    
-    //MARK: Controle do cursor
-    
-    func panGesture(recognizer: UIPanGestureRecognizer){
         
-        let translation = recognizer.translationInView(cursorView)
-        
-        // Mover view que estiver selecionada
-        if let sView = selectedView{
-            self.view.bringSubviewToFront(sView)
-            
-            sView.center = CGPoint(x:sView.center.x + translation.x, y:sView.center.y + translation.y)
-        }
-        
-        self.view.bringSubviewToFront(cursorView)
-        
-        cursorView.center = CGPoint(x:cursorView.center.x + translation.x, y:cursorView.center.y + translation.y)
-        
-        recognizer.setTranslation(CGPointZero, inView: cursorView)
-    }
-    
-    func tapGesture(recognizer: UIPanGestureRecognizer){
-        
-        // Se houver um click e uma view ja estiver selecionada
-        if selectedView != nil{
-            //TODO: Fazer alguma animacao na view quando desselecionada
-            selectedView = nil
-            return
-        }
-        
-        // Verifica se existe alguma view no ponto clicado
-        if let tappedView = self.view.hitTest(cursorView.frame.origin, withEvent: nil){
-            if tappedView != self.view{
-                //TODO: Fazer uma animacao para a view selecionada
-                selectedView = tappedView
-            }
-        }
-    }
-
-    
-    
-    
-    //MARK: Notificacoes do controle
-    func controllerDidConnect(notification: NSNotification){
-        
-        // Verifica se eh um Vcgontroller
-        guard let newController: VgcController = notification.object as? VgcController
-            else{
-                return
-        }
-        
-        
-        print("Novo controle conectado: \(newController.deviceInfo.vendorName)")
-        
-        //no exemplo o código abaixo está aqui. Como não consegui testar não sei se faz diferença
-        
-        //Value Handler for custom controls
+        //Handler para customControl
         Elements.customElements.valueChangedHandler = { [unowned self](controller, element) in
             
             if (element.identifier == CustomElementType.TextMessage.rawValue) {
@@ -155,7 +101,6 @@ class BoardViewController: UIViewController {
             }
             
             
-            //TODO: Receber Data ao inves de String
             
             if (element.identifier == CustomElementType.DataMessage.rawValue){
                 print("Recebeu mensagem do tipo Data")
@@ -163,8 +108,79 @@ class BoardViewController: UIViewController {
                 print(element.value)
             }
         }
+        
+        
+        
 
-  
+    }
+    
+    //MARK: Controle do cursor
+    
+    func panGesture(recognizer: UIPanGestureRecognizer){
+        
+        let translation = recognizer.translationInView(cursorView)
+        
+        // Mover view que estiver selecionada
+        if let sView = selectedView{
+            self.view.bringSubviewToFront(sView)
+            
+            sView.center = CGPoint(x:sView.center.x + translation.x, y:sView.center.y + translation.y)
+        }else{
+            
+            // Destaca view que o cursor esta passando por cima
+            if let tappedView = self.view.hitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
+                if tappedView != highlightedView{
+                    highlightedView?.hideView()
+                    tappedView.highlightView()
+                    highlightedView = tappedView
+                }
+            }
+        }
+        
+        self.view.bringSubviewToFront(cursorView)
+        
+        cursorView.center = CGPoint(x:cursorView.center.x + translation.x, y:cursorView.center.y + translation.y)
+        
+        recognizer.setTranslation(CGPointZero, inView: cursorView)
+    }
+    
+    func tapGesture(recognizer: UIPanGestureRecognizer){
+        
+        // Se houver um click e uma view ja estiver selecionada
+        if selectedView != nil{
+            //TODO: Fazer alguma animacao na view quando desselecionada
+            selectedView = nil
+            return
+        }
+        
+        // Verifica se existe alguma view no ponto clicado
+        if let tappedView = self.view.hitTest(cursorView.frame.origin, withEvent: nil){
+            if tappedView != self.view{
+                //TODO: Fazer uma animacao para a view selecionada
+                selectedView = tappedView
+            }else{
+                
+                // Tira o foco da view em destaque
+                highlightedView?.hideView()
+                highlightedView = nil
+            }
+        }
+    }
+
+    
+    
+    
+    //MARK: Notificacoes do controle
+    func controllerDidConnect(notification: NSNotification){
+        
+        // Verifica se eh um Vcgontroller
+        guard let newController: VgcController = notification.object as? VgcController
+            else{
+                return
+        }
+        
+        
+        print("Novo controle conectado: \(newController.deviceInfo.vendorName)")
         
     }
     
