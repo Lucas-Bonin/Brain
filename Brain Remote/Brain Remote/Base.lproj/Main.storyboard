@@ -23,9 +23,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="6aL-RK-vKw" kind="show" identifier="PostItSegue" id="wgS-oB-HPH"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -34,10 +31,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="7Fd-Ai-1MZ"/>
+                    <connections>
+                        <segue destination="6aL-RK-vKw" kind="show" identifier="PostItSegue" id="eRN-7r-riN"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCh-Q5-Vc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1380" y="345"/>
+            <point key="canvasLocation" x="1408" y="369"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EAU-N8-1tI">
@@ -200,8 +200,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Ok8-fB-WVK"/>
                                 <exclude reference="6y9-rb-UH7"/>
+                                <exclude reference="Ok8-fB-WVK"/>
                                 <exclude reference="2f1-8U-sX4"/>
                                 <exclude reference="qrB-IR-gE2"/>
                                 <exclude reference="CwN-bR-epg"/>
@@ -215,7 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBU-Pn-vuG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2069" y="351"/>
+            <point key="canvasLocation" x="2092" y="353"/>
         </scene>
     </scenes>
     <resources>
