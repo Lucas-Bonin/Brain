@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C28543861D119728008DFC0B /* FixedCollors.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28543851D119728008DFC0B /* FixedCollors.swift */; };
 		CD695AEBADB6CAAB6C1D05A3 /* Pods_Brain_TV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EE3FA998F506F1AA197F2BC /* Pods_Brain_TV.framework */; };
 		E07B86831D0F3E370094FF96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B86821D0F3E370094FF96 /* AppDelegate.swift */; };
 		E07B86851D0F3E370094FF96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B86841D0F3E370094FF96 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		11FC3772E33E6A6ED7A1F481 /* Pods-Brain TV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brain TV.debug.xcconfig"; path = "../Pods/Target Support Files/Pods-Brain TV/Pods-Brain TV.debug.xcconfig"; sourceTree = "<group>"; };
 		5EE3FA998F506F1AA197F2BC /* Pods_Brain_TV.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brain_TV.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C28543851D119728008DFC0B /* FixedCollors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixedCollors.swift; sourceTree = "<group>"; };
 		CC9FB9E9056EEB84FD133F87 /* Pods-Brain TV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brain TV.release.xcconfig"; path = "../Pods/Target Support Files/Pods-Brain TV/Pods-Brain TV.release.xcconfig"; sourceTree = "<group>"; };
 		E07B867F1D0F3E370094FF96 /* Brain TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Brain TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E07B86821D0F3E370094FF96 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				E0DB045D1D1035EF009911B5 /* VgcCustomElements.swift */,
+				C28543851D119728008DFC0B /* FixedCollors.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				E07B86851D0F3E370094FF96 /* ViewController.swift in Sources */,
 				E07B86831D0F3E370094FF96 /* AppDelegate.swift in Sources */,
 				E0DB045E1D1035EF009911B5 /* VgcCustomElements.swift in Sources */,
+				C28543861D119728008DFC0B /* FixedCollors.swift in Sources */,
 				E0DB04601D103765009911B5 /* PostItView.swift in Sources */,
 				E0DB04511D102128009911B5 /* BoardViewController.swift in Sources */,
 			);

@@ -12,6 +12,7 @@ import VirtualGameController
 class BoardViewController: UIViewController {
     
     var selectedView: UIView?
+    var customViewMaster = UIView()
     
     //cursor
     var cursorView = UIImageView()
@@ -49,34 +50,6 @@ class BoardViewController: UIViewController {
         
         // Notificacoes quando um controle conectar ou desconectar
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector (BoardViewController.controllerDidConnect(_:)), name: VgcControllerDidConnectNotification, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector (BoardViewController.controllerDidDisconnect(_:)), name: VgcControllerDidDisconnectNotification, object: nil)
-        
-        //Handler para os controles
-        Elements.customElements.valueChangedHandler = { [unowned self](controller, element) in
-            print("recebeu custom controller")
-            if (element.identifier == CustomElementType.TextMessage.rawValue) {
-                print("recebeu mensagem de texto:\n");
-                let text = element.value as? String
-                print(text!)
-                
-                // Instancia um novo PostIt ao receber uma
-                let customView = PostItView(frame: CGRect(x: (CGFloat)(arc4random_uniform(1920)), y: (CGFloat)(arc4random_uniform(1080)), width: 500, height: 500))
-                customView.backgroundColor = UIColor(red: (CGFloat)(drand48()), green: (CGFloat)(drand48()), blue: (CGFloat)(drand48()), alpha: 1)
-                customView.textLabel.text = text
-                //customView.delegate = self
-                self.view.addSubview(customView)
-                
-            }
-            
-            //TODO: Receber Data ao inves de String
-
-            if (element.identifier == CustomElementType.DataMessage.rawValue){
-                print("Recebeu mensagem do tipo Data")
-                
-                print(element.value)
-            }
-        }
     }
     
     //MARK: Controle do cursor
@@ -131,6 +104,68 @@ class BoardViewController: UIViewController {
         
         
         print("Novo controle conectado: \(newController.deviceInfo.vendorName)")
+        
+        //no exemplo o código abaixo está aqui. Como não consegui testar não sei se faz diferença
+        
+        //Value Handler for custom controls
+        Elements.customElements.valueChangedHandler = { [unowned self](controller, element) in
+            
+            if (element.identifier == CustomElementType.TextMessage.rawValue) {
+                print("recebeu mensagem de texto:\n");
+                let text = element.value as? String
+                print(text!)
+                
+                let x = (CGFloat)(arc4random_uniform(400))
+                let y = (CGFloat)(arc4random_uniform(550))
+                
+                let customView = PostItView(frame: CGRect(x: x , y: y, width: self.view.layer.frame.height/6, height: self.view.layer.frame.height/6))
+                
+                customView.backgroundColor = FixedColors.getColorBy(10)
+                
+                //config shdow
+                customView.layer.shadowColor = UIColor.blackColor().CGColor
+                customView.layer.shadowOffset = CGSize(width: 4.0, height: 4.0);
+                customView.layer.shadowRadius = 5.0;
+                customView.layer.shadowOpacity = 0.5;
+                
+                customView.textLabel.text = text
+                
+                //change to animations
+                customView.alpha = 0.0
+                customView.textLabel.alpha = 0.0
+                
+                customView.transform = CGAffineTransformMakeScale(0.2, 0.2)
+                
+                //animation
+                UIView.animateWithDuration(1, animations: {
+                    customView.alpha = 1.0
+                    customView.textLabel.alpha = 1.0
+                    
+                    customView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+                })
+                
+                self.view.addSubview(customView)
+                self.customViewMaster = customView
+                
+            }
+            //change collor
+            if(element.identifier == CustomElementType.IntCollor.rawValue){
+                let number = element.value as? Int
+                self.customViewMaster.backgroundColor = FixedColors.getColorBy(number!)
+            }
+            
+            
+            //TODO: Receber Data ao inves de String
+            
+            if (element.identifier == CustomElementType.DataMessage.rawValue){
+                print("Recebeu mensagem do tipo Data")
+                
+                print(element.value)
+            }
+        }
+
+  
+        
     }
     
     

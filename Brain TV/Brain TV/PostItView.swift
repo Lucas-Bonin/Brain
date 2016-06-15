@@ -16,12 +16,12 @@ class PostItView: UIView {
 //    var delegate:DragDelegate!
     
     override init(frame: CGRect) {
-        
-        
-        
-        textLabel = UILabel(frame: CGRectMake(0,0,500,500))
+        //config label
+        textLabel = UILabel(frame: CGRectMake(0,0, frame.height,frame.height))
         textLabel.textAlignment = .Center
-        textLabel.font = textLabel.font.fontWithSize(70)
+        textLabel.font = textLabel.font.fontWithSize(20)
+        textLabel.numberOfLines = 5
+        textLabel.font = UIFont(name: "Futura", size: 22)
         
         super.init(frame: frame)
         
