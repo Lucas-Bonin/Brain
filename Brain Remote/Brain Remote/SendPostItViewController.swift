@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Foundation
+
 import VirtualGameController
 
 class SendPostItViewController: UIViewController {
@@ -16,10 +18,12 @@ class SendPostItViewController: UIViewController {
     
     @IBAction func sendMassage(sender: AnyObject) {
         
-        //TODO: Mandar um Data com o texto e a cor excolhida pelo usuario
-        
         // Primeiro encaminha resposta para o custom controller
         VgcManager.elements.custom[CustomElementType.TextMessage.rawValue]!.value = textField.text!
+        
+        //TODO: Mandar uma mensagem do tipo DataMessage
+//        var value: Int = 323
+//        VgcManager.elements.custom[CustomElementType.DataMessage.rawValue]!.value = NSData(bytes: &value, length: sizeof(Int))
         
         // Envia mensagem
         VgcManager.peripheral.sendElementState(VgcManager.elements.custom[CustomElementType.TextMessage.rawValue]!)

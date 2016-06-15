@@ -28,13 +28,13 @@ class PostItView: UIView {
         self.addSubview(textLabel)
         
         //funcoes para reconhecimento de gestos
-        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(PostItView.handleGesture(_:)))
-        let tapRecognizer = UITapGestureRecognizer(target: self, action:#selector(PostItView.tapGesture(_:)))
+       // let recognizer = UIPanGestureRecognizer(target: self, action: #selector(PostItView.handleGesture(_:)))
+      //  let tapRecognizer = UITapGestureRecognizer(target: self, action:#selector(PostItView.tapGesture(_:)))
         
         //recognizer.delegate = self
         self.userInteractionEnabled = true
-        self.addGestureRecognizer(tapRecognizer)
-        self.addGestureRecognizer(recognizer)
+      //  self.addGestureRecognizer(tapRecognizer)
+     //   self.addGestureRecognizer(recognizer)
         
     }
     
@@ -44,7 +44,7 @@ class PostItView: UIView {
     
     override func canBecomeFocused() -> Bool {
         //   print("PODE SER FOCADO ?")
-        return true
+        return false
     }
     
     override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {

@@ -21,7 +21,7 @@ class SearchCentralViewController: UITableViewController {
     private func remoteInit(){
         
         // Inicializa controle
-        VgcManager.startAs(.Peripheral, appIdentifier: "bRain", customElements: CustomElements(), customMappings: CustomMappings())
+        VgcManager.startAs(.Peripheral, appIdentifier: "bRainLucas", customElements: CustomElements(), customMappings: CustomMappings())
         
         
         //Adiciona informacoes sobre o controle
