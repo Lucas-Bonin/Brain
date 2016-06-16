@@ -21,7 +21,7 @@ class PostItView: UIView {
         textLabel.textAlignment = .Center
         textLabel.font = textLabel.font.fontWithSize(20)
         textLabel.numberOfLines = 5
-        textLabel.font = UIFont(name: "Futura-Medium", size: 22)
+        textLabel.font = UIFont(name: "SFUIText-Bold", size: 22)
         print("Familia Fonte: \(textLabel.font.familyName), Nome Fonte: \(textLabel.font.fontName)")
         
         super.init(frame: frame)
