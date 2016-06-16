@@ -27,7 +27,7 @@ struct FixedColors {
         // green Color
         case 4: return UIColor(red: 186/255, green: 211/255, blue: 107/255, alpha: 1.0)
         //without collor
-        case 5: return UIColor(red: 186/255, green: 211/255, blue: 107/255, alpha: 0.0)
+        case 5: return UIColor(red: 252/255, green: 223/255, blue: 62/255, alpha: 1.0)
             // yellow Color
             
         default: return UIColor(red: 245/255, green: 227/255, blue: 137/255, alpha: 1.0)
