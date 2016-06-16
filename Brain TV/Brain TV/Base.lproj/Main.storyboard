@@ -8,7 +8,7 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BoardViewController" customModule="Brain_TV" customModuleProvider="target" sceneMemberID="viewController">
-                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megapisos_morumbi_pisos_laminados_durafloor_way_patina_perola" id="c6V-fc-T03">
+                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca" id="c6V-fc-T03">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
@@ -18,6 +18,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="megapisos_morumbi_pisos_laminados_durafloor_way_patina_perola" width="775" height="460"/>
+        <image name="megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca" width="775" height="460"/>
     </resources>
 </document>
