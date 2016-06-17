@@ -67,6 +67,8 @@ class PostItView: UIView {
         })
         
         deleteButton.hidden = true
+        self.layer.removeAnimationForKey("shaking")
+
         
         viewState = .Idle
     }
@@ -74,6 +76,7 @@ class PostItView: UIView {
     func shakeView(){
         if viewState != .Highlighting{
             //print("Animacao cancelada, estado da view = \(viewState)")
+            self.shakeIcons((self.layer))
             return
         }
         deleteButton.hidden = false
@@ -81,8 +84,27 @@ class PostItView: UIView {
         
     }
     
+    func shakeIcons(layer: CALayer) {
+        let shakeAnim = CABasicAnimation(keyPath: "transform.rotation")
+        shakeAnim.duration = 0.05
+        shakeAnim.repeatCount = 2
+        shakeAnim.autoreverses = true
+        let startAngle: Float = (-2) * 3.14159/180
+        let stopAngle = -startAngle
+        shakeAnim.fromValue = NSNumber(float: startAngle)
+        shakeAnim.toValue = NSNumber(float: 3 * stopAngle)
+        shakeAnim.autoreverses = true
+        shakeAnim.duration = 0.2
+        shakeAnim.repeatCount = 10000
+        shakeAnim.timeOffset = 290 * drand48()
+        
+        layer.addAnimation(shakeAnim, forKey:"shaking")
+    }
+    
+    
     func stopShake(){
-        print("Para de mexer view")
+        self.layer.removeAnimationForKey("shaking")
+
     }
     
 }
