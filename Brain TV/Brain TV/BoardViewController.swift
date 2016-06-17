@@ -16,6 +16,8 @@ class BoardViewController: UIViewController {
     
     var customViewMaster = UIView()
     
+    var dellButton = false
+    
     //cursor
     var cursorView = UIImageView()
     
@@ -129,8 +131,10 @@ class BoardViewController: UIViewController {
                     highlightedView = tappedView
                 }
             }else{
-                highlightedView?.hideView()
-                highlightedView = nil
+                if(self.dellButton == false){
+                    highlightedView?.hideView()
+                    highlightedView = nil
+                }
             }
         }
         
@@ -158,6 +162,7 @@ class BoardViewController: UIViewController {
             // Tira o foco da view em destaque
             highlightedView?.hideView()
             highlightedView = nil
+            self.dellButton = false
             return
         }
         
@@ -168,6 +173,7 @@ class BoardViewController: UIViewController {
         
         if let delButton = tappedView as? DeleteButtonView{
             delButton.destroyView()
+            self.dellButton = false
         }
     }
     
@@ -175,7 +181,7 @@ class BoardViewController: UIViewController {
         print("Reconheceu um long press")
         if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
             tappedView.shakeView()
-            
+            self.dellButton = true
             
         }
 

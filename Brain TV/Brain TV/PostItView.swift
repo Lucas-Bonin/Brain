@@ -127,8 +127,17 @@ class PostItView: UIView {
 
 // Extension para delegates
 extension PostItView: DeleteButtonDelegate{
+    
     func deleteView() {
         print("Deleta view")
-        self.removeFromSuperview()
+        //animation
+        UIView.animateWithDuration(1, animations: {
+            self.alpha = 0.1
+            self.transform = CGAffineTransformMakeScale(0.1, 0.1)
+
+        }) { _ in
+            self.removeFromSuperview()
+        }
+
     }
 }
