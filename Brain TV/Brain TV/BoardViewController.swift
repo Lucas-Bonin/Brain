@@ -25,8 +25,6 @@ class BoardViewController: UIViewController {
         centralInit()
         
         cursorInit()
-        
-
     }
     
     private func cursorInit(){
@@ -37,10 +35,12 @@ class BoardViewController: UIViewController {
         cursorView.hidden = false
         view.addSubview(cursorView)
         
-        // Cria um recognizer para o cursor
+        // Cria recognizer para o cursor
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(BoardViewController.panGesture(_:)))
         let tapRecognizer = UITapGestureRecognizer(target: self, action:#selector(BoardViewController.tapGesture(_:)))
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action:#selector (BoardViewController.longPressGesture(_:)))
         
+        self.view.addGestureRecognizer(longPressRecognizer)
         self.view.addGestureRecognizer(tapRecognizer)
         self.view.addGestureRecognizer(recognizer)
     }
@@ -128,7 +128,7 @@ class BoardViewController: UIViewController {
         }else{
             
             // Destaca view que o cursor esta passando por cima
-            if let tappedView = self.view.hitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
+            if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
                 if tappedView != highlightedView{
                     highlightedView?.hideView()
                     tappedView.highlightView()
@@ -144,7 +144,8 @@ class BoardViewController: UIViewController {
         recognizer.setTranslation(CGPointZero, inView: cursorView)
     }
     
-    func tapGesture(recognizer: UIPanGestureRecognizer){
+    func tapGesture(recognizer: UITapGestureRecognizer){
+        
         
         // Se houver um click e uma view ja estiver selecionada
         if selectedView != nil{
@@ -154,20 +155,34 @@ class BoardViewController: UIViewController {
         }
         
         // Verifica se existe alguma view no ponto clicado
-        if let tappedView = self.view.hitTest(cursorView.frame.origin, withEvent: nil){
-            if tappedView != self.view{
-                //TODO: Fazer uma animacao para a view selecionada
-                selectedView = tappedView
-            }else{
-                
-                // Tira o foco da view em destaque
-                highlightedView?.hideView()
-                highlightedView = nil
-            }
+        guard let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) else {return}
+        
+        if tappedView == self.view{
+            // Tira o foco da view em destaque
+            highlightedView?.hideView()
+            highlightedView = nil
+            return
+        }
+        
+        if let postItView = tappedView as? PostItView{
+            selectedView = postItView
+            return
+        }
+        
+        if let delButton = tappedView as? DeleteButtonView{
+            delButton.destroyView()
         }
     }
-
     
+    func longPressGesture(recognizer: UILongPressGestureRecognizer){
+        print("Reconheceu um long press")
+        if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
+            tappedView.shakeView()
+            
+            
+        }
+
+    }
     
     
     //MARK: Notificacoes do controle
@@ -196,3 +211,31 @@ class BoardViewController: UIViewController {
         print("Controle desconectado: \(newController.deviceInfo.vendorName)")
     }
 }
+
+// Funcao para reconhecer subviews quando clicar na tela
+extension UIView {
+    func overlapHitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        
+        if !self.userInteractionEnabled || self.hidden || self.alpha == 0 {
+            return nil
+        }
+        
+        var hitView: UIView? = self
+        if !self.pointInside(point, withEvent: event) {
+            if self.clipsToBounds {
+                return nil
+            } else {
+                hitView = nil
+            }
+        }
+        
+        for subview in self.subviews.reverse() {
+            let insideSubview = self.convertPoint(point, toView: subview)
+            if let sview = subview.overlapHitTest(insideSubview, withEvent: event) {
+                return sview
+            }
+        }
+        return hitView
+    }
+}
+

@@ -8,15 +8,21 @@
 
 import UIKit
 
+enum AnimationState{
+    case Idle
+    case Shaking
+    case Highlighting
+}
+
 class PostItView: UIView {
     var textLabel: UILabel
+    private var deleteButton: DeleteButtonView
     
-    var isMovable = false
-    
-//    var delegate:DragDelegate!
+    var viewState: AnimationState = .Idle
     
     override init(frame: CGRect) {
-        //config label
+        
+        // config label
         textLabel = UILabel(frame: CGRectMake(0,0, frame.height,frame.height))
         textLabel.textAlignment = .Center
         textLabel.font = textLabel.font.fontWithSize(20)
@@ -24,84 +30,30 @@ class PostItView: UIView {
         textLabel.font = UIFont(name: "SFUIText-Bold", size: 22)
         print("Familia Fonte: \(textLabel.font.familyName), Nome Fonte: \(textLabel.font.fontName)")
         
+        // Adiciona botao para excluir view
+        deleteButton = DeleteButtonView(frame: CGRectMake(0,0, (frame.height/4), (frame.height/4)))
+        deleteButton.hidden = true
+        deleteButton.center = CGPoint(x: 0,y: 0)
+        deleteButton.backgroundColor = UIColor.blueColor()
+        
         super.init(frame: frame)
         
+        deleteButton.delegate = self
+
+        
+        self.addSubview(deleteButton)
         self.addSubview(textLabel)
-        
-        //funcoes para reconhecimento de gestos
-       // let recognizer = UIPanGestureRecognizer(target: self, action: #selector(PostItView.handleGesture(_:)))
-      //  let tapRecognizer = UITapGestureRecognizer(target: self, action:#selector(PostItView.tapGesture(_:)))
-        
-        //recognizer.delegate = self
-        self.userInteractionEnabled = true
-      //  self.addGestureRecognizer(tapRecognizer)
-     //   self.addGestureRecognizer(recognizer)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func canBecomeFocused() -> Bool {
-        //   print("PODE SER FOCADO ?")
-        return false
-    }
-    
-    override func didUpdateFocusInContext(context: UIFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
-        
-        if context.previouslyFocusedView === self
-        {
-            
-            
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
-                context.previouslyFocusedView?.transform = CGAffineTransformMakeScale(1.0, 1.0)
-            })
-        }
-        
-        if context.nextFocusedView === self
-        {
-            
-            //quando a view for focada, passar ele para frente
-            self.superview?.bringSubviewToFront(self)
-            
-            UIView.animateWithDuration(0.1, animations: { () -> Void in
-                context.nextFocusedView?.transform = CGAffineTransformMakeScale(1.2, 1.2)
-            })
-        }
-        
-    }
-    
-    func handleGesture(recognizer: UIPanGestureRecognizer){
-        // print("Gesto")
-        
-        if(!isMovable){
-            return
-        }
-        
-        let translation = recognizer.translationInView(self.superview!)
-        if let view = recognizer.view {
-            view.center = CGPoint(x:view.center.x + translation.x,
-                                  y:view.center.y + translation.y)
-        }
-        recognizer.setTranslation(CGPointZero, inView: self)
-    }
-    
-    func tapGesture(recognizer: UITapGestureRecognizer){
-        if self.focused {
-            self.isMovable = !self.isMovable
-            
-        }
-        
-//        if let dragDelegate = delegate {
-//            dragDelegate.isDragging(isMovable)
-//        }
-        print("tocou na tela")
-    }
-    
     //MARK: Animacoes na view
     func highlightView(){
-        print("Aumentar o tamanho da view")
+        
+        viewState = .Highlighting
+        
         self.superview?.bringSubviewToFront(self)
         
         UIView.animateWithDuration(0.1, animations: { () -> Void in
@@ -110,11 +62,35 @@ class PostItView: UIView {
     }
     
     func hideView(){
-        print("Diminuir tamanho da view")
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(1.0, 1.0)
         })
+        
+        deleteButton.hidden = true
+        
+        viewState = .Idle
     }
     
+    func shakeView(){
+        if viewState != .Highlighting{
+            //print("Animacao cancelada, estado da view = \(viewState)")
+            return
+        }
+        deleteButton.hidden = false
+        viewState = .Shaking
+        
+    }
     
+    func stopShake(){
+        print("Para de mexer view")
+    }
+    
+}
+
+// Extension para delegates
+extension PostItView: DeleteButtonDelegate{
+    func deleteView() {
+        print("Deleta view")
+        self.removeFromSuperview()
+    }
 }
