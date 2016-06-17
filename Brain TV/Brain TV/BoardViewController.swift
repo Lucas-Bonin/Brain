@@ -11,12 +11,16 @@ import VirtualGameController
 
 class BoardViewController: UIViewController {
     
+    static let segueIdentifier = "showBoardViewController"
+    
     var selectedView: UIView?
     var highlightedView: PostItView?
     
     var customViewMaster = UIView()
     
     var dellButton = false
+    
+    
     
     //cursor
     var cursorView = UIImageView()
@@ -27,6 +31,9 @@ class BoardViewController: UIViewController {
         centralInit()
         
         cursorInit()
+        
+        // Esconde a navigation bar
+        self.navigationController?.navigationBarHidden = true
     }
     
     private func cursorInit(){
