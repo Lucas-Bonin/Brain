@@ -14,6 +14,9 @@
 		E07B86851D0F3E370094FF96 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07B86841D0F3E370094FF96 /* ViewController.swift */; };
 		E07B86881D0F3E370094FF96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07B86861D0F3E370094FF96 /* Main.storyboard */; };
 		E07B868A1D0F3E370094FF96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E07B86891D0F3E370094FF96 /* Assets.xcassets */; };
+		E0D01AC91D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */; };
+		E0D01ACB1D142C9700CDF0F2 /* BoardCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D01ACA1D142C9700CDF0F2 /* BoardCollectionViewController.swift */; };
+		E0D01ACD1D1441D400CDF0F2 /* DataItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */; };
 		E0DB04511D102128009911B5 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB04501D102128009911B5 /* BoardViewController.swift */; };
 		E0DB045E1D1035EF009911B5 /* VgcCustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB045D1D1035EF009911B5 /* VgcCustomElements.swift */; };
 		E0DB04601D103765009911B5 /* PostItView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB045F1D103765009911B5 /* PostItView.swift */; };
@@ -31,6 +34,9 @@
 		E07B86871D0F3E370094FF96 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E07B86891D0F3E370094FF96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E07B868B1D0F3E370094FF96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		E0D01ACA1D142C9700CDF0F2 /* BoardCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardCollectionViewController.swift; sourceTree = "<group>"; };
+		E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataItemHeaderView.swift; sourceTree = "<group>"; };
 		E0DB04501D102128009911B5 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		E0DB045D1D1035EF009911B5 /* VgcCustomElements.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VgcCustomElements.swift; sourceTree = "<group>"; };
 		E0DB045F1D103765009911B5 /* PostItView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItView.swift; sourceTree = "<group>"; };
@@ -112,6 +118,8 @@
 				E07B86861D0F3E370094FF96 /* Main.storyboard */,
 				E0DB045F1D103765009911B5 /* PostItView.swift */,
 				E02E67941D137A06002EBA3F /* DeleteButtonView.swift */,
+				E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */,
+				E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -120,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				E0DB04501D102128009911B5 /* BoardViewController.swift */,
+				E0D01ACA1D142C9700CDF0F2 /* BoardCollectionViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -246,12 +255,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0D01ACB1D142C9700CDF0F2 /* BoardCollectionViewController.swift in Sources */,
 				E07B86851D0F3E370094FF96 /* ViewController.swift in Sources */,
 				E07B86831D0F3E370094FF96 /* AppDelegate.swift in Sources */,
 				E02E67951D137A06002EBA3F /* DeleteButtonView.swift in Sources */,
 				E0DB045E1D1035EF009911B5 /* VgcCustomElements.swift in Sources */,
 				C28543861D119728008DFC0B /* FixedCollors.swift in Sources */,
 				E0DB04601D103765009911B5 /* PostItView.swift in Sources */,
+				E0D01AC91D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift in Sources */,
+				E0D01ACD1D1441D400CDF0F2 /* DataItemHeaderView.swift in Sources */,
 				E0DB04511D102128009911B5 /* BoardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

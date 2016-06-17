@@ -31,6 +31,110 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-2655" y="1517"/>
+        </scene>
+        <!--Board Collection View Controller-->
+        <scene sceneID="hYL-RO-OHx">
+            <objects>
+                <collectionViewController id="G9p-Yn-V29" customClass="BoardCollectionViewController" customModule="Brain_TV" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2pT-EW-06S">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="snc-9X-cd2">
+                            <size key="itemSize" width="166" height="198"/>
+                            <size key="headerReferenceSize" width="50" height="50"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BoardCollectionCell" id="Rss-1X-VYc" customClass="DataItemCollectionViewCell" customModule="Brain_TV" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="195" width="166" height="198"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="166" height="198"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kfZ-ho-h9v">
+                                            <rect key="frame" x="0.0" y="0.0" width="166" height="147"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9r-aQ-eQF">
+                                            <rect key="frame" x="62" y="159" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="imageBoard" destination="kfZ-ho-h9v" id="Lzm-U9-uVm"/>
+                                    <outlet property="textBoard" destination="w9r-aQ-eQF" id="ps0-do-jJB"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HeaderBoardCollectionCell" id="6Uu-iz-bt4" customClass="DataItemHeaderView" customModule="Brain_TV" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="145" width="1920" height="50"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5fY-4W-1YY">
+                                    <rect key="frame" x="375" y="14" width="42" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <connections>
+                                <outlet property="headerText" destination="5fY-4W-1YY" id="SSp-Xs-laB"/>
+                            </connections>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="G9p-Yn-V29" id="wEw-bn-hoC"/>
+                            <outlet property="delegate" destination="G9p-Yn-V29" id="ofF-Le-sOL"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" id="5Ci-9O-Nf7"/>
+                    <connections>
+                        <segue destination="p45-ye-gHz" kind="show" identifier="showEditBoardViewController" id="Lto-Oq-HgJ"/>
+                    </connections>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z6l-st-bAg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-595" y="173"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="lcq-97-Vdw">
+            <objects>
+                <viewController id="p45-ye-gHz" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7eL-SA-ixY"/>
+                        <viewControllerLayoutGuide type="bottom" id="ba6-Ya-NLM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="34g-Gy-Uvm">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wvy-WK-Icc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="201"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HQT-6m-Exe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Uw2-B3-ghJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O3p-de-wLb">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="145"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="G9p-Yn-V29" kind="relationship" relationship="rootViewController" id="Tnn-oO-SBS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mfy-hc-els" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2727" y="173"/>
         </scene>
     </scenes>
     <resources>
