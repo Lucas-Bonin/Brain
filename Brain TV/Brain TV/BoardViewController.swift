@@ -68,12 +68,6 @@ class BoardViewController: UIViewController {
                 
                 customView.backgroundColor = FixedColors.getColorBy(10)
                 
-                //config shdow
-                customView.layer.shadowColor = UIColor.blackColor().CGColor
-                customView.layer.shadowOffset = CGSize(width: 4.0, height: 4.0);
-                customView.layer.shadowRadius = 5.0;
-                customView.layer.shadowOpacity = 0.5;
-                
                 customView.textLabel.text = text
                 
                 //change to animations
@@ -134,6 +128,9 @@ class BoardViewController: UIViewController {
                     tappedView.highlightView()
                     highlightedView = tappedView
                 }
+            }else{
+                highlightedView?.hideView()
+                highlightedView = nil
             }
         }
         
