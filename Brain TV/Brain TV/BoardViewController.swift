@@ -40,7 +40,7 @@ class BoardViewController: UIViewController {
         cursorView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: 64.0, height: 64.0))
         cursorView.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen().bounds), CGRectGetMidY(UIScreen.mainScreen().bounds))
         cursorView.image =  UIImage(named: "cursor")
-        cursorView.backgroundColor = UIColor.redColor()
+//        cursorView.backgroundColor = UIColor.redColor()
         cursorView.hidden = false
         view.addSubview(cursorView)
         
@@ -101,6 +101,9 @@ class BoardViewController: UIViewController {
             if(element.identifier == CustomElementType.IntCollor.rawValue){
                 let number = element.value as? Int
                 self.customViewMaster.backgroundColor = FixedColors.getColorBy(number!)
+                if(number == 5){
+                    self.customViewMaster.layer.shadowOpacity = 0
+                }
             }
             
             

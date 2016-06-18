@@ -34,7 +34,7 @@ class PostItView: UIView {
         deleteButton = DeleteButtonView(frame: CGRectMake(0,0, (frame.height/4), (frame.height/4)))
         deleteButton.hidden = true
         deleteButton.center = CGPoint(x: 0,y: 0)
-        deleteButton.backgroundColor = UIColor.blueColor()
+//        deleteButton.backgroundColor = UIColor.blueColor()
         
         super.init(frame: frame)
         
@@ -66,20 +66,15 @@ class PostItView: UIView {
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(1.2, 1.2)
 
-            self.layer.shadowColor = UIColor.blackColor().CGColor
             self.layer.shadowOffset = CGSize(width: 10.0, height: 10.0);
-            self.layer.shadowRadius = 5.0;
-            self.layer.shadowOpacity = 0.5;
         })
     }
     
     func hideView(){
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.transform = CGAffineTransformMakeScale(1.0, 1.0)
-            self.layer.shadowColor = UIColor.blackColor().CGColor
+            
             self.layer.shadowOffset = CGSize(width: 4.0, height: 4.0);
-            self.layer.shadowRadius = 5.0;
-            self.layer.shadowOpacity = 0.5;
         })
         
         deleteButton.hidden = true
