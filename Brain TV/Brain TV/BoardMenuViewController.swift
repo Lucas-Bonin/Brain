@@ -15,8 +15,19 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     let segueEditBoardIdentifier = "showEditBoardViewController"
     
     private let firstCell = 0
+    private var boardsSaved = [BoardDataItem]()
     
     @IBOutlet weak var imagePreview: UIImageView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Load das boards salvas
+        if let boards = BoardManager.sharedInstance.loadBoard(){
+            boardsSaved = boards
+        }
+    }
+    
     
     //MARK: DataSource
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
@@ -25,8 +36,8 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // Numero de boards salvas
-        return 6
+        // Boards salvas + view para criacao de uma nova board
+        return boardsSaved.count + 1
     }
     
     // Conteudo da view
@@ -34,15 +45,15 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(DataItemCollectionViewCell.reuseIdentifier, forIndexPath: indexPath) as! DataItemCollectionViewCell
         
         if indexPath.row == firstCell{
-            cell.imageBoard.image = UIImage(named:"deleteButton")
+            cell.imageBoard.image = UIImage(named: "deleteButton")
             cell.textBoard.text = "New Board"
             return cell
         }
         
         
-        cell.imageBoard.image = UIImage(named: "small")
+        cell.imageBoard.image = boardsSaved[indexPath.row - 1].backgroundImage
         
-        cell.textBoard.text = "Imagem \(indexPath.row)"
+        cell.textBoard.text = boardsSaved[indexPath.row - 1].boardName
         
         return cell
     }
@@ -73,16 +84,14 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         
         guard let index = context.nextFocusedIndexPath?.row else {return}
         
-        let image = index % 2 == 0 ? UIImage(named: "small") : UIImage(named: "deleteButton")
+        if(index == firstCell){
+            imagePreview.image = UIImage(named: "deleteButton")
+            return
+        }
+        
+        imagePreview.image = boardsSaved[index - 1].backgroundImage
+    }
 
-        imagePreview.image = image
-    }
-    
-    func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        print("Passou imagem \(indexPath.row)")
-    }
-    
-    
     //MARK: Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

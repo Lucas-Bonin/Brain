@@ -20,6 +20,9 @@
 		E09318721D15AA0700772128 /* BackgroundDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09318711D15AA0700772128 /* BackgroundDataItem.swift */; };
 		E09318741D15BC8A00772128 /* DetailEditBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09318731D15BC8A00772128 /* DetailEditBoardViewController.swift */; };
 		E09318761D15E13100772128 /* EditSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09318751D15E13100772128 /* EditSplitViewController.swift */; };
+		E09D81931D16F2E000CE31E5 /* PostItDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09D81921D16F2E000CE31E5 /* PostItDataItem.swift */; };
+		E09D81951D17002F00CE31E5 /* BoardDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09D81941D17002F00CE31E5 /* BoardDataItem.swift */; };
+		E09D81971D17049F00CE31E5 /* BoardManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09D81961D17049F00CE31E5 /* BoardManager.swift */; };
 		E0D01AC91D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */; };
 		E0D01ACD1D1441D400CDF0F2 /* DataItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */; };
 		E0DB04511D102128009911B5 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB04501D102128009911B5 /* BoardViewController.swift */; };
@@ -45,6 +48,9 @@
 		E09318711D15AA0700772128 /* BackgroundDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundDataItem.swift; sourceTree = "<group>"; };
 		E09318731D15BC8A00772128 /* DetailEditBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditBoardViewController.swift; sourceTree = "<group>"; };
 		E09318751D15E13100772128 /* EditSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSplitViewController.swift; sourceTree = "<group>"; };
+		E09D81921D16F2E000CE31E5 /* PostItDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostItDataItem.swift; sourceTree = "<group>"; };
+		E09D81941D17002F00CE31E5 /* BoardDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardDataItem.swift; sourceTree = "<group>"; };
+		E09D81961D17049F00CE31E5 /* BoardManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardManager.swift; sourceTree = "<group>"; };
 		E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataItemHeaderView.swift; sourceTree = "<group>"; };
 		E0DB04501D102128009911B5 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +125,9 @@
 				E0DB045D1D1035EF009911B5 /* VgcCustomElements.swift */,
 				C28543851D119728008DFC0B /* FixedCollors.swift */,
 				E09318711D15AA0700772128 /* BackgroundDataItem.swift */,
+				E09D81921D16F2E000CE31E5 /* PostItDataItem.swift */,
+				E09D81941D17002F00CE31E5 /* BoardDataItem.swift */,
+				E09D81961D17049F00CE31E5 /* BoardManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -270,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E09D81971D17049F00CE31E5 /* BoardManager.swift in Sources */,
 				E07B86851D0F3E370094FF96 /* ViewController.swift in Sources */,
 				E07B86831D0F3E370094FF96 /* AppDelegate.swift in Sources */,
 				E09318721D15AA0700772128 /* BackgroundDataItem.swift in Sources */,
@@ -280,11 +290,13 @@
 				E09318741D15BC8A00772128 /* DetailEditBoardViewController.swift in Sources */,
 				C28543861D119728008DFC0B /* FixedCollors.swift in Sources */,
 				E09318701D15A10A00772128 /* MasterEditBoardTableViewCell.swift in Sources */,
+				E09D81951D17002F00CE31E5 /* BoardDataItem.swift in Sources */,
 				E093186E1D159F5600772128 /* MasterEditBoardViewController.swift in Sources */,
 				E0DB04601D103765009911B5 /* PostItView.swift in Sources */,
 				E0D01AC91D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift in Sources */,
 				E0D01ACD1D1441D400CDF0F2 /* DataItemHeaderView.swift in Sources */,
 				E0DB04511D102128009911B5 /* BoardViewController.swift in Sources */,
+				E09D81931D16F2E000CE31E5 /* PostItDataItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
