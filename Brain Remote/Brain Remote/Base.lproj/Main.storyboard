@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xnC-sj-M8l" id="qFC-s5-bSr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -85,14 +85,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZQc-Ds-zRU">
                                 <rect key="frame" x="0.0" y="265" width="600" height="60"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raw-2p-4dW">
-                                        <rect key="frame" x="494" y="5" width="85.5" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raw-2p-4dW">
+                                        <rect key="frame" x="494" y="5" width="86" height="50"/>
                                         <state key="normal" image="5"/>
                                         <connections>
                                             <action selector="withoutCollor:" destination="6aL-RK-vKw" eventType="touchUpInside" id="K5l-pC-U0M"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4T-Sp-Y4L">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4T-Sp-Y4L">
                                         <rect key="frame" x="65" y="0.0" width="86" height="60"/>
                                         <state key="normal" image="1"/>
                                         <connections>
@@ -100,7 +100,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cva-nI-Hcc">
-                                        <rect key="frame" x="151" y="-18" width="85.5" height="96"/>
+                                        <rect key="frame" x="151" y="-18" width="86" height="96"/>
                                         <state key="normal" image="2"/>
                                         <connections>
                                             <action selector="blueCollor:" destination="6aL-RK-vKw" eventType="touchUpInside" id="n7b-YV-wCI"/>
@@ -114,7 +114,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sS9-sB-zAy">
-                                        <rect key="frame" x="323" y="-18" width="85.5" height="96"/>
+                                        <rect key="frame" x="323" y="-18" width="86" height="96"/>
                                         <state key="normal" image="4"/>
                                         <connections>
                                             <action selector="greenCollor:" destination="6aL-RK-vKw" eventType="touchUpInside" id="i41-tQ-tNV"/>
@@ -229,7 +229,7 @@
         <image name="2" width="96" height="96"/>
         <image name="3" width="96" height="96"/>
         <image name="4" width="96" height="96"/>
-        <image name="5" width="50" height="50"/>
+        <image name="5" width="96" height="96"/>
         <image name="6" width="96" height="96"/>
     </resources>
 </document>

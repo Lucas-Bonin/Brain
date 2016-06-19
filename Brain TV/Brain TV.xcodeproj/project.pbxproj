@@ -15,6 +15,11 @@
 		E07B86881D0F3E370094FF96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E07B86861D0F3E370094FF96 /* Main.storyboard */; };
 		E07B868A1D0F3E370094FF96 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E07B86891D0F3E370094FF96 /* Assets.xcassets */; };
 		E081A1631D147758007A12B9 /* BoardMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E081A1621D147758007A12B9 /* BoardMenuViewController.swift */; };
+		E093186E1D159F5600772128 /* MasterEditBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093186D1D159F5600772128 /* MasterEditBoardViewController.swift */; };
+		E09318701D15A10A00772128 /* MasterEditBoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E093186F1D15A10A00772128 /* MasterEditBoardTableViewCell.swift */; };
+		E09318721D15AA0700772128 /* BackgroundDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09318711D15AA0700772128 /* BackgroundDataItem.swift */; };
+		E09318741D15BC8A00772128 /* DetailEditBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09318731D15BC8A00772128 /* DetailEditBoardViewController.swift */; };
+		E09318761D15E13100772128 /* EditSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09318751D15E13100772128 /* EditSplitViewController.swift */; };
 		E0D01AC91D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */; };
 		E0D01ACD1D1441D400CDF0F2 /* DataItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */; };
 		E0DB04511D102128009911B5 /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DB04501D102128009911B5 /* BoardViewController.swift */; };
@@ -35,6 +40,11 @@
 		E07B86891D0F3E370094FF96 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E07B868B1D0F3E370094FF96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E081A1621D147758007A12B9 /* BoardMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardMenuViewController.swift; sourceTree = "<group>"; };
+		E093186D1D159F5600772128 /* MasterEditBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterEditBoardViewController.swift; sourceTree = "<group>"; };
+		E093186F1D15A10A00772128 /* MasterEditBoardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterEditBoardTableViewCell.swift; sourceTree = "<group>"; };
+		E09318711D15AA0700772128 /* BackgroundDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundDataItem.swift; sourceTree = "<group>"; };
+		E09318731D15BC8A00772128 /* DetailEditBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailEditBoardViewController.swift; sourceTree = "<group>"; };
+		E09318751D15E13100772128 /* EditSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSplitViewController.swift; sourceTree = "<group>"; };
 		E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataItemHeaderView.swift; sourceTree = "<group>"; };
 		E0DB04501D102128009911B5 /* BoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +118,7 @@
 			children = (
 				E0DB045D1D1035EF009911B5 /* VgcCustomElements.swift */,
 				C28543851D119728008DFC0B /* FixedCollors.swift */,
+				E09318711D15AA0700772128 /* BackgroundDataItem.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -120,6 +131,7 @@
 				E02E67941D137A06002EBA3F /* DeleteButtonView.swift */,
 				E0D01AC81D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift */,
 				E0D01ACC1D1441D400CDF0F2 /* DataItemHeaderView.swift */,
+				E093186F1D15A10A00772128 /* MasterEditBoardTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -129,6 +141,9 @@
 			children = (
 				E0DB04501D102128009911B5 /* BoardViewController.swift */,
 				E081A1621D147758007A12B9 /* BoardMenuViewController.swift */,
+				E093186D1D159F5600772128 /* MasterEditBoardViewController.swift */,
+				E09318731D15BC8A00772128 /* DetailEditBoardViewController.swift */,
+				E09318751D15E13100772128 /* EditSplitViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -257,10 +272,15 @@
 			files = (
 				E07B86851D0F3E370094FF96 /* ViewController.swift in Sources */,
 				E07B86831D0F3E370094FF96 /* AppDelegate.swift in Sources */,
+				E09318721D15AA0700772128 /* BackgroundDataItem.swift in Sources */,
 				E02E67951D137A06002EBA3F /* DeleteButtonView.swift in Sources */,
 				E0DB045E1D1035EF009911B5 /* VgcCustomElements.swift in Sources */,
+				E09318761D15E13100772128 /* EditSplitViewController.swift in Sources */,
 				E081A1631D147758007A12B9 /* BoardMenuViewController.swift in Sources */,
+				E09318741D15BC8A00772128 /* DetailEditBoardViewController.swift in Sources */,
 				C28543861D119728008DFC0B /* FixedCollors.swift in Sources */,
+				E09318701D15A10A00772128 /* MasterEditBoardTableViewCell.swift in Sources */,
+				E093186E1D159F5600772128 /* MasterEditBoardViewController.swift in Sources */,
 				E0DB04601D103765009911B5 /* PostItView.swift in Sources */,
 				E0D01AC91D142A8E00CDF0F2 /* DataItemCollectionViewCell.swift in Sources */,
 				E0D01ACD1D1441D400CDF0F2 /* DataItemHeaderView.swift in Sources */,

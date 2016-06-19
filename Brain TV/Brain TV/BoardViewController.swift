@@ -11,7 +11,9 @@ import VirtualGameController
 
 class BoardViewController: UIViewController {
     
-    static let segueIdentifier = "showBoardViewController"
+    @IBOutlet weak var boardBackground: UIImageView!
+    
+    let unwindSegueIdentifier = "unwindToMenuBoardViewController"
     
     var selectedView: UIView?
     var highlightedView: PostItView?
@@ -19,11 +21,13 @@ class BoardViewController: UIViewController {
     var customViewMaster = UIView()
     
     var dellButton = false
-    
-    
-    
+
     //cursor
     var cursorView = UIImageView()
+    
+    //MARK: Propriedades para customizar board
+    var backgroundImage = UIImage()
+    var boardTitle = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,8 +36,17 @@ class BoardViewController: UIViewController {
         
         cursorInit()
         
+        self.boardBackground.image = backgroundImage
+        
         // Esconde a navigation bar
-        self.navigationController?.navigationBarHidden = true
+        self.navigationController?.navigationBarHidden = false
+        self.navigationController?.title = boardTitle
+        
+        // Mudar comportamento padrao do botao MENU
+        let tapRecognizer = UITapGestureRecognizer(target: self, action:#selector(BoardViewController.tapGestureMenu(_:)))
+        tapRecognizer.allowedPressTypes = [NSNumber(integer: UIPressType.Menu.rawValue)]
+        self.view.addGestureRecognizer(tapRecognizer)
+
     }
     
     private func cursorInit(){
@@ -54,6 +67,97 @@ class BoardViewController: UIViewController {
         self.view.addGestureRecognizer(recognizer)
     }
     
+    
+    //MARK: Controle do cursor
+    
+    func panGesture(recognizer: UIPanGestureRecognizer){
+        
+        let translation = recognizer.translationInView(cursorView)
+        
+        // Mover view que estiver selecionada
+        if let sView = selectedView{
+            self.view.bringSubviewToFront(sView)
+            
+            sView.center = CGPoint(x:sView.center.x + translation.x, y:sView.center.y + translation.y)
+        }else{
+            
+            // Destaca view que o cursor esta passando por cima
+            if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
+                if tappedView != highlightedView{
+                    highlightedView?.hideView()
+                    tappedView.highlightView()
+                    highlightedView = tappedView
+                }
+            }else{
+                if(self.dellButton == false){
+                    highlightedView?.hideView()
+                    highlightedView = nil
+                }
+            }
+        }
+        
+        self.view.bringSubviewToFront(cursorView)
+        
+        cursorView.center = CGPoint(x:cursorView.center.x + translation.x, y:cursorView.center.y + translation.y)
+        
+        recognizer.setTranslation(CGPointZero, inView: cursorView)
+    }
+    
+    func tapGestureMenu(recognizer: UITapGestureRecognizer){
+        //TODO: Dar um aviso ao usuario antes de ir para a tela inicial
+        self.performSegueWithIdentifier(unwindSegueIdentifier, sender: self)
+    }
+    
+    func tapGesture(recognizer: UITapGestureRecognizer){
+        
+        print(recognizer.allowedPressTypes)
+        
+        
+        // Se houver um click e uma view ja estiver selecionada
+        if selectedView != nil{
+            //TODO: Fazer alguma animacao na view quando desselecionada
+            selectedView = nil
+            return
+        }
+        
+        // Verifica se existe alguma view no ponto clicado
+        guard let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) else {return}
+        
+        if tappedView == self.view{
+            // Tira o foco da view em destaque
+            highlightedView?.hideView()
+            highlightedView = nil
+            self.dellButton = false
+            return
+        }
+        
+        if let postItView = tappedView as? PostItView{
+            selectedView = postItView
+            return
+        }
+        
+        if let delButton = tappedView as? DeleteButtonView{
+            delButton.destroyView()
+            self.dellButton = false
+        }
+    }
+    
+    func longPressGesture(recognizer: UILongPressGestureRecognizer){
+        print("Reconheceu um long press")
+        if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
+            tappedView.shakeView()
+            self.dellButton = true
+            
+        }
+
+    }
+    
+    
+}
+
+
+// Funcoes para VirtualGameController
+extension BoardViewController{
     private func centralInit(){
         
         // Inicializa Central
@@ -114,89 +218,7 @@ class BoardViewController: UIViewController {
                 print(element.value)
             }
         }
-        
-        
-        
-
     }
-    
-    //MARK: Controle do cursor
-    
-    func panGesture(recognizer: UIPanGestureRecognizer){
-        
-        let translation = recognizer.translationInView(cursorView)
-        
-        // Mover view que estiver selecionada
-        if let sView = selectedView{
-            self.view.bringSubviewToFront(sView)
-            
-            sView.center = CGPoint(x:sView.center.x + translation.x, y:sView.center.y + translation.y)
-        }else{
-            
-            // Destaca view que o cursor esta passando por cima
-            if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
-                if tappedView != highlightedView{
-                    highlightedView?.hideView()
-                    tappedView.highlightView()
-                    highlightedView = tappedView
-                }
-            }else{
-                if(self.dellButton == false){
-                    highlightedView?.hideView()
-                    highlightedView = nil
-                }
-            }
-        }
-        
-        self.view.bringSubviewToFront(cursorView)
-        
-        cursorView.center = CGPoint(x:cursorView.center.x + translation.x, y:cursorView.center.y + translation.y)
-        
-        recognizer.setTranslation(CGPointZero, inView: cursorView)
-    }
-    
-    func tapGesture(recognizer: UITapGestureRecognizer){
-        
-        
-        // Se houver um click e uma view ja estiver selecionada
-        if selectedView != nil{
-            //TODO: Fazer alguma animacao na view quando desselecionada
-            selectedView = nil
-            return
-        }
-        
-        // Verifica se existe alguma view no ponto clicado
-        guard let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) else {return}
-        
-        if tappedView == self.view{
-            // Tira o foco da view em destaque
-            highlightedView?.hideView()
-            highlightedView = nil
-            self.dellButton = false
-            return
-        }
-        
-        if let postItView = tappedView as? PostItView{
-            selectedView = postItView
-            return
-        }
-        
-        if let delButton = tappedView as? DeleteButtonView{
-            delButton.destroyView()
-            self.dellButton = false
-        }
-    }
-    
-    func longPressGesture(recognizer: UILongPressGestureRecognizer){
-        print("Reconheceu um long press")
-        if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
-            tappedView.shakeView()
-            self.dellButton = true
-            
-        }
-
-    }
-    
     
     //MARK: Notificacoes do controle
     func controllerDidConnect(notification: NSNotification){
@@ -223,6 +245,8 @@ class BoardViewController: UIViewController {
         
         print("Controle desconectado: \(newController.deviceInfo.vendorName)")
     }
+
+
 }
 
 // Funcao para reconhecer subviews quando clicar na tela

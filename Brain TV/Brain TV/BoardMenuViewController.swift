@@ -11,6 +11,9 @@ import UIKit
 class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     //TODO: Fazer o load das boards salvas
     
+    let segueBoardIdentifier = "showBoardViewController"
+    let segueEditBoardIdentifier = "showEditBoardViewController"
+    
     private let firstCell = 0
     
     @IBOutlet weak var imagePreview: UIImageView!
@@ -57,10 +60,10 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == firstCell{
             print("Abrir tela de selecao")
-            performSegueWithIdentifier("showEditBoardViewController", sender: self)
+            performSegueWithIdentifier(segueEditBoardIdentifier, sender: self)
         }else{
             
-            performSegueWithIdentifier(BoardViewController.segueIdentifier, sender: self)
+            //performSegueWithIdentifier(segueBoardIdentifier, sender: self)
             
             print("Abrir Board Salva")
         }
@@ -85,5 +88,11 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         print("passar parametros para board")
     }
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+        
+    }
+    
+    
 
 }
