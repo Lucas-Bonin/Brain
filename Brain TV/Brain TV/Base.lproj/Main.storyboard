@@ -16,27 +16,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ov7-K1-C8C" userLabel="Header View">
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Board" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-fC-hXn">
+                                        <rect key="frame" x="897" y="7" width="127" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.83137254901960789" green="0.80784313725490198" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Zxd-fC-hXn" firstAttribute="centerY" secondItem="ov7-K1-C8C" secondAttribute="centerY" id="2p9-D1-MmZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="8MA-j4-wXk"/>
+                                    <constraint firstItem="Zxd-fC-hXn" firstAttribute="centerX" secondItem="ov7-K1-C8C" secondAttribute="centerX" id="wHZ-Aq-p7k"/>
+                                </constraints>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca" translatesAutoresizingMaskIntoConstraints="NO" id="UfY-Tt-9fM">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                <rect key="frame" x="0.0" y="50" width="1920" height="1030"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="UfY-Tt-9fM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="9rH-Xr-VFm"/>
-                            <constraint firstAttribute="trailing" secondItem="UfY-Tt-9fM" secondAttribute="trailing" id="DZB-ij-8ee"/>
-                            <constraint firstItem="UfY-Tt-9fM" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ezY-lQ-N7q"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UfY-Tt-9fM" secondAttribute="bottom" id="ho7-Ah-J0O"/>
+                            <constraint firstAttribute="trailing" secondItem="ov7-K1-C8C" secondAttribute="trailing" id="3pG-r1-cok"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UfY-Tt-9fM" secondAttribute="bottom" id="Fol-Ux-ZaR"/>
+                            <constraint firstItem="ov7-K1-C8C" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Izd-HP-UeL"/>
+                            <constraint firstItem="ov7-K1-C8C" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="VH5-rz-QV4"/>
+                            <constraint firstItem="UfY-Tt-9fM" firstAttribute="top" secondItem="ov7-K1-C8C" secondAttribute="bottom" id="jAm-gm-9r3"/>
+                            <constraint firstItem="UfY-Tt-9fM" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ls8-PO-oOp"/>
+                            <constraint firstAttribute="trailing" secondItem="UfY-Tt-9fM" secondAttribute="trailing" id="xGc-h5-xzD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="boardBackground" destination="UfY-Tt-9fM" id="QSE-8i-axa"/>
+                        <outlet property="boardTitleLabel" destination="Zxd-fC-hXn" id="Vrh-t0-9lQ"/>
                         <segue destination="0fj-bC-XdS" kind="unwind" identifier="unwindToMenuBoardViewController" unwindAction="prepareForUnwind:" id="qvZ-gO-lvp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="0fj-bC-XdS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4101" y="-3903"/>
+            <point key="canvasLocation" x="4077" y="-3671"/>
         </scene>
         <!--Board Menu View Controller-->
         <scene sceneID="MZt-Ee-Guj">
@@ -244,6 +265,6 @@
         <image name="megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca" width="775" height="460"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jki-MD-URU"/>
+        <segue reference="puF-Lv-Bhy"/>
     </inferredMetricsTieBreakers>
 </document>

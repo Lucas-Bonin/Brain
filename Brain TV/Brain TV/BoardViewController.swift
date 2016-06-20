@@ -10,6 +10,7 @@ import UIKit
 import VirtualGameController
 
 class BoardViewController: UIViewController {
+    @IBOutlet weak var boardTitleLabel: UILabel!
     
     @IBOutlet weak var boardBackground: UIImageView!
     
@@ -47,6 +48,7 @@ class BoardViewController: UIViewController {
     private func customBoardInit(){
         
         self.boardBackground.image = customBoard.backgroundImage
+        self.boardTitleLabel.text = customBoard.boardName
         
         guard let postItItems = customBoard.postIt else {return}
     
@@ -90,7 +92,7 @@ class BoardViewController: UIViewController {
     private func cursorInit(){
         cursorView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: 64.0, height: 64.0))
         cursorView.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen().bounds), CGRectGetMidY(UIScreen.mainScreen().bounds))
-        cursorView.image =  UIImage(named: "cursor")
+        cursorView.image =  UIImage(named: "pin")
         cursorView.hidden = false
         view.addSubview(cursorView)
         
@@ -119,7 +121,12 @@ class BoardViewController: UIViewController {
         }else{
             
             // Destaca view que o cursor esta passando por cima
-            if let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) as? PostItView{
+            
+            // Define ponta do cursor
+            
+            let point = CGPointMake(cursorView.frame.minX, cursorView.frame.maxY)
+            print("Exibindo point: \(point)")
+            if let tappedView = self.view.overlapHitTest(point, withEvent: nil) as? PostItView{
                 if tappedView != highlightedView{
                     highlightedView?.hideView()
                     tappedView.highlightView()
@@ -158,7 +165,8 @@ class BoardViewController: UIViewController {
         }
         
         // Verifica se existe alguma view no ponto clicado
-        guard let tappedView = self.view.overlapHitTest(cursorView.frame.origin, withEvent: nil) else {return}
+        let point = CGPointMake(cursorView.frame.minX, cursorView.frame.maxY)
+        guard let tappedView = self.view.overlapHitTest(point, withEvent: nil) else {return}
         
         if tappedView == self.view{
             // Tira o foco da view em destaque
@@ -208,7 +216,7 @@ class BoardViewController: UIViewController {
         UIGraphicsEndImageContext()
         
         // Necessario diminuir o tamanho da imagem
-        let newWidth: CGFloat = 1000
+        let newWidth: CGFloat = 500
         let scale = newWidth / image.size.width
         let newHeight = image.size.height * scale
         UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
