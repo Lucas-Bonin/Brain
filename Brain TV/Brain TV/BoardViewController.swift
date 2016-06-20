@@ -125,7 +125,6 @@ class BoardViewController: UIViewController {
             // Define ponta do cursor
             
             let point = CGPointMake(cursorView.frame.minX, cursorView.frame.maxY)
-            print("Exibindo point: \(point)")
             if let tappedView = self.view.overlapHitTest(point, withEvent: nil) as? PostItView{
                 if tappedView != highlightedView{
                     highlightedView?.hideView()

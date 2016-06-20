@@ -10,6 +10,7 @@ import UIKit
 
 class DetailEditBoardViewController: UIViewController {
     
+    @IBOutlet weak var backgoundDetail: UIImageView!
 
     @IBOutlet weak var boardImage: UIImageView!
 
@@ -24,10 +25,12 @@ class DetailEditBoardViewController: UIViewController {
         setMasterDelegate()
         
         // Texto default a board
-        inputBoardName.text = "Board"
+        inputBoardName.text = "My Board"
         
         // View de foco
         viewToFocus = inputBoardName
+        
+        navigationController?.navigationBarHidden = true
         
     }
     
@@ -86,6 +89,14 @@ extension DetailEditBoardViewController: BoardSelectionDelegate{
     
     // Atualiza imagem
     func boardSelected(newBoard: BackgroundDataItem) {
+        
         boardImage.image = newBoard.image
+        
+        
+        
+        backgoundDetail.image = newBoard.image
+        backgoundDetail.alpha = 0.4
+        
+        
     }
 }

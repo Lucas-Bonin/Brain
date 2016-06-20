@@ -24,6 +24,9 @@ class MasterEditBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBarHidden = true
+        
     }
 }
 
@@ -40,6 +43,7 @@ extension MasterEditBoardViewController: UITableViewDelegate, UITableViewDataSou
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(MasterEditBoardTableViewCell.reuseHeaderIdentifier) as! MasterEditBoardTableViewCell
+        
         
         cell.boardLabel.text = backgrounds[indexPath.row].title
         
