@@ -8,15 +8,17 @@
 
 import UIKit
 
-class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
     //TODO: Fazer o load das boards salvas
     
-    let segueBoardIdentifier = "showBoardViewController"
+    let segueBoardIdentifier = "MenuToBoardViewController"
     let segueEditBoardIdentifier = "showEditBoardViewController"
     
     private let firstCell = 0
     private var boardsSaved = [BoardDataItem]()
+    private var focusedCollectionViewCell: DataItemCollectionViewCell?
     
+    @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var imagePreview: UIImageView!
     
     override func viewDidLoad() {
@@ -26,6 +28,11 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         if let boards = BoardManager.sharedInstance.loadBoard(){
             boardsSaved = boards
         }
+        
+        // Adiciona um gesture recognizer na collection view
+        let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(BoardMenuViewController.handleLongPress(_:)))
+        lpgr.delegate = self
+        self.menuCollectionView.addGestureRecognizer(lpgr)
     }
     
     
@@ -51,7 +58,7 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         
         
-        cell.imageBoard.image = boardsSaved[indexPath.row - 1].backgroundImage
+        cell.imageBoard.image = boardsSaved[indexPath.row - 1].previewImage
         
         cell.textBoard.text = boardsSaved[indexPath.row - 1].boardName
         
@@ -70,38 +77,108 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     //MARK: Delegate
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         if indexPath.row == firstCell{
-            print("Abrir tela de selecao")
+            
             performSegueWithIdentifier(segueEditBoardIdentifier, sender: self)
         }else{
             
-            //performSegueWithIdentifier(segueBoardIdentifier, sender: self)
-            
-            print("Abrir Board Salva")
+            // Passando a celula atual como sender
+            performSegueWithIdentifier(segueBoardIdentifier, sender: self.menuCollectionView.cellForItemAtIndexPath(indexPath))
         }
     }
     
     func collectionView(collectionView: UICollectionView, didUpdateFocusInContext context: UICollectionViewFocusUpdateContext, withAnimationCoordinator coordinator: UIFocusAnimationCoordinator) {
         
-        guard let index = context.nextFocusedIndexPath?.row else {return}
+        guard let indexPath = context.nextFocusedIndexPath else {return}
         
-        if(index == firstCell){
+        self.focusedCollectionViewCell = self.menuCollectionView.cellForItemAtIndexPath(indexPath) as? DataItemCollectionViewCell
+        
+        if(indexPath.row == firstCell){
             imagePreview.image = UIImage(named: "deleteButton")
             return
         }
         
-        imagePreview.image = boardsSaved[index - 1].backgroundImage
+        imagePreview.image = boardsSaved[indexPath.row - 1].previewImage
     }
 
     //MARK: Segue
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        print("passar parametros para board")
+        if segue.identifier == segueBoardIdentifier{
+            
+            guard let viewController = segue.destinationViewController as? BoardViewController else{return}
+            guard let cell = sender as? UICollectionViewCell else{return}
+            guard let index = self.menuCollectionView.indexPathForCell(cell) else {return}
+            
+            viewController.customBoard = boardsSaved[index.row - 1]
+        }
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+        // Salva board quando voltar para a tela principal
+        guard let viewController = segue.sourceViewController as? BoardViewController else {return}
+        let newBoard = viewController.customBoard
+        
+        for index in 0..<boardsSaved.count{
+            if boardsSaved[index] == newBoard{
+                boardsSaved.removeAtIndex(index)
+                break
+            }
+        }
+        
+        boardsSaved.insert(newBoard, atIndex: 0)
+        
+        //boardsSaved.append(newBoard)
+        
+        BoardManager.sharedInstance.saveBoard(boardsSaved)
+        
+        
+        self.menuCollectionView.reloadData()
+        // Resolve problema de nao aparecer o ultimo elemento
+        self.menuCollectionView.reloadItemsAtIndexPaths(self.menuCollectionView.indexPathsForVisibleItems())
+
         
     }
     
+    //MARK: Gestures
+    func handleLongPress(gestureReconizer: UILongPressGestureRecognizer) {
+        print("long press")
+        guard let cell = self.focusedCollectionViewCell else {return}
+        guard let indexPath = self.menuCollectionView.indexPathForCell(cell) else {return}
+        
+        if indexPath.row == firstCell{
+            return
+        }
+        
+        // Mostra um Alert view
+        let title = ""
+        let message = ""
+        let cancelButtonTitle = "Cancel"
+        let deleteButtonTitle = "Delete"
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
+        
+        // Create the actions.
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel) { _ in
+        }
+        
+        let deleteAction = UIAlertAction(title: deleteButtonTitle, style: .Destructive) { _ in
+            
+            // Deleta board
+            self.boardsSaved.removeAtIndex(indexPath.row - 1)
+            BoardManager.sharedInstance.saveBoard(self.boardsSaved)
+            self.menuCollectionView.reloadData()
+            
+        }
+        
+        // Add the actions.
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
+        
+        
+        
+        
+    }
     
-
 }

@@ -23,8 +23,13 @@ class SendPostItViewController: UIViewController {
     
     @IBAction func sendMassage(sender: AnyObject) {
         
+        // Nao manda mensagem sem texto
+        if self.textView.text == ""{
+         return
+        }
+        
         // Primeiro encaminha resposta para o custom controller
-        VgcManager.elements.custom[CustomElementType.TextMessage.rawValue]!.value = textView.text!
+        VgcManager.elements.custom[CustomElementType.TextMessage.rawValue]!.value = textView.text
         VgcManager.elements.custom[CustomElementType.IntCollor.rawValue]!.value = number
         
         // Envia mensagem

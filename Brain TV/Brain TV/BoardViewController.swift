@@ -18,7 +18,7 @@ class BoardViewController: UIViewController {
     var selectedView: UIView?
     var highlightedView: PostItView?
     
-    var customViewMaster = UIView()
+    var customViewMaster: PostItDataItem?
     
     var dellButton = false
 
@@ -26,8 +26,7 @@ class BoardViewController: UIViewController {
     var cursorView = UIImageView()
     
     //MARK: Propriedades para customizar board
-    var backgroundImage = UIImage()
-    var boardTitle = ""
+    var customBoard = BoardDataItem(boardName: "", bkgImage: UIImage(), postIt: [PostItDataItem]())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,11 +35,7 @@ class BoardViewController: UIViewController {
         
         cursorInit()
         
-        self.boardBackground.image = backgroundImage
-        
-        // Esconde a navigation bar
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.title = boardTitle
+        customBoardInit()
         
         // Mudar comportamento padrao do botao MENU
         let tapRecognizer = UITapGestureRecognizer(target: self, action:#selector(BoardViewController.tapGestureMenu(_:)))
@@ -49,11 +44,53 @@ class BoardViewController: UIViewController {
 
     }
     
+    private func customBoardInit(){
+        
+        self.boardBackground.image = customBoard.backgroundImage
+        
+        guard let postItItems = customBoard.postIt else {return}
+    
+        for index in 0..<postItItems.count{
+            createPostIt(postItItems[index])
+        }
+    }
+    
+    private func createPostIt(postIt: PostItDataItem){
+        
+        let size = CGSizeMake(self.view.layer.frame.height/6, self.view.layer.frame.height/6)
+        
+        let customView = PostItView(frame: CGRect(origin: postIt.originPosition, size: size))
+        
+        customView.backgroundColor = FixedColors.getColorBy(postIt.color)
+        if(postIt.color == 5){
+            customView.layer.shadowOpacity = 0
+        }
+        
+        customView.textLabel.text = postIt.text
+        customView.colorNumber = postIt.color
+        
+        //change to animations
+        customView.alpha = 0.0
+        customView.textLabel.alpha = 0.0
+        
+        customView.transform = CGAffineTransformMakeScale(0.2, 0.2)
+        
+        //animation
+        UIView.animateWithDuration(1, animations: {
+            customView.alpha = 1.0
+            customView.textLabel.alpha = 1.0
+            
+            customView.transform = CGAffineTransformMakeScale(1.0, 1.0)
+        })
+        
+        self.view.addSubview(customView)
+        
+    }
+
     private func cursorInit(){
         cursorView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: 64.0, height: 64.0))
         cursorView.center = CGPointMake(CGRectGetMidX(UIScreen.mainScreen().bounds), CGRectGetMidY(UIScreen.mainScreen().bounds))
         cursorView.image =  UIImage(named: "cursor")
-//        cursorView.backgroundColor = UIColor.redColor()
         cursorView.hidden = false
         view.addSubview(cursorView)
         
@@ -137,6 +174,9 @@ class BoardViewController: UIViewController {
         }
         
         if let delButton = tappedView as? DeleteButtonView{
+            
+            
+            
             delButton.destroyView()
             self.dellButton = false
         }
@@ -152,6 +192,58 @@ class BoardViewController: UIViewController {
 
     }
     
+    //MARK: Screenshot
+    func screenShotMethod() -> UIImage {
+        
+        // Esconde o cursor
+        self.cursorView.alpha = 0
+
+        
+        // Tira uma screenshot da tela
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Necessario diminuir o tamanho da imagem
+        let newWidth: CGFloat = 1000
+        let scale = newWidth / image.size.width
+        let newHeight = image.size.height * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        self.cursorView.alpha = 1
+
+        
+        return newImage
+        
+    }
+    
+    //MARK: Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+        screenShotMethod()
+        
+        var newPostItItems = [PostItDataItem]()
+        
+        // Separa todas as subviews que sao PostItView
+        let newSubviews = self.view.subviews.filter{$0 is PostItView} as! [PostItView]
+        
+        // Cria um novo vetor com todas as postIt que estao na tela
+        for index in 0..<newSubviews.count{
+            let postItData = PostItDataItem(color: newSubviews[index].colorNumber, text: newSubviews[index].textLabel.text!, position: newSubviews[index].frame.origin)
+            newPostItItems.append(postItData)
+        }
+        self.customBoard.postIt = newPostItItems
+        
+        //Adiciona uma imagem preview para saber o estado da Board antes de abri-la
+        let image = screenShotMethod()
+        self.customBoard.previewImage = image
+    }
     
 }
 
@@ -170,6 +262,7 @@ extension BoardViewController{
         Elements.customElements.valueChangedHandler = { [unowned self](controller, element) in
             
             if (element.identifier == CustomElementType.TextMessage.rawValue) {
+                
                 print("recebeu mensagem de texto:\n");
                 let text = element.value as? String
                 print(text!)
@@ -177,40 +270,25 @@ extension BoardViewController{
                 let x = (CGFloat)(arc4random_uniform(400))
                 let y = (CGFloat)(arc4random_uniform(550))
                 
-                let customView = PostItView(frame: CGRect(x: x , y: y, width: self.view.layer.frame.height/6, height: self.view.layer.frame.height/6))
+                let point = CGPointMake(x, y)
                 
-                customView.backgroundColor = FixedColors.getColorBy(10)
-                
-                customView.textLabel.text = text
-                
-                //change to animations
-                customView.alpha = 0.0
-                customView.textLabel.alpha = 0.0
-                
-                customView.transform = CGAffineTransformMakeScale(0.2, 0.2)
-                
-                //animation
-                UIView.animateWithDuration(1, animations: {
-                    customView.alpha = 1.0
-                    customView.textLabel.alpha = 1.0
-                    
-                    customView.transform = CGAffineTransformMakeScale(1.0, 1.0)
-                })
-                
-                self.view.addSubview(customView)
+                // Cria um objeto com as informacoes do novo postIt
+                let customView = PostItDataItem(color: 2, text: text!, position: point)
                 self.customViewMaster = customView
                 
             }
-            //change collor
+            
+            //change color
             if(element.identifier == CustomElementType.IntCollor.rawValue){
                 let number = element.value as? Int
-                self.customViewMaster.backgroundColor = FixedColors.getColorBy(number!)
-                if(number == 5){
-                    self.customViewMaster.layer.shadowOpacity = 0
-                }
+                
+                guard let customView = self.customViewMaster else {return}
+                customView.color = number
+                
+                //Somente quando tiver a cor e o texto, cria o postIt
+                self.createPostIt(customView)
+
             }
-            
-            
             
             if (element.identifier == CustomElementType.DataMessage.rawValue){
                 print("Recebeu mensagem do tipo Data")

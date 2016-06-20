@@ -73,12 +73,10 @@ class DetailEditBoardViewController: UIViewController {
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == boardSegueIdentifier{
-            if let viewController = segue.destinationViewController as? BoardViewController{
-                if let image = boardImage.image, text = inputBoardName.text{
-                    viewController.backgroundImage = image
-                    viewController.boardTitle = text
-                }
-            }
+            guard let viewController = segue.destinationViewController as? BoardViewController else {return}
+            guard let image = boardImage.image, text = inputBoardName.text else {return}
+            let board = BoardDataItem(boardName: text, bkgImage: image, postIt: [PostItDataItem]())
+            viewController.customBoard = board
         }
     }
     

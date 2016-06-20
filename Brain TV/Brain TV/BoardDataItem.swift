@@ -14,14 +14,16 @@ class BoardDataItem: NSObject, NSCoding {
     //MARK: Propriedades
     var boardName: String!
     var backgroundImage: UIImage!
+    var previewImage: UIImage?
     
     var postIt: [PostItDataItem]?
     
     func encodeWithCoder(aCoder: NSCoder) {
         
-        
         aCoder.encodeObject(boardName, forKey: "boardName")
         aCoder.encodeObject(backgroundImage, forKey: "image")
+        aCoder.encodeObject(previewImage, forKey: "prevImage")
+
         aCoder.encodeObject(postIt, forKey: "postIt")
     }
     
@@ -30,7 +32,8 @@ class BoardDataItem: NSObject, NSCoding {
         
         boardName = aDecoder.decodeObjectForKey("boardName") as! String
         backgroundImage = aDecoder.decodeObjectForKey("image") as! UIImage
-        postIt = aDecoder.decodeObjectForKey("postIt") as! [PostItDataItem]
+        previewImage = aDecoder.decodeObjectForKey("prevImage") as? UIImage
+        postIt = aDecoder.decodeObjectForKey("postIt") as? [PostItDataItem]
     }
     
     init(boardName: String, bkgImage: UIImage, postIt: [PostItDataItem]){

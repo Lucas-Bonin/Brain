@@ -16,6 +16,7 @@ enum AnimationState{
 
 class PostItView: UIView {
     var textLabel: UILabel
+    var colorNumber: Int = 0
     private var deleteButton: DeleteButtonView
     
     var viewState: AnimationState = .Idle
@@ -34,7 +35,6 @@ class PostItView: UIView {
         deleteButton = DeleteButtonView(frame: CGRectMake(0,0, (frame.height/4), (frame.height/4)))
         deleteButton.hidden = true
         deleteButton.center = CGPoint(x: 0,y: 0)
-//        deleteButton.backgroundColor = UIColor.blueColor()
         
         super.init(frame: frame)
         
