@@ -87,9 +87,9 @@ class PostItView: UIView {
     func shakeView(){
         if viewState != .Highlighting{
             //print("Animacao cancelada, estado da view = \(viewState)")
-            self.shakeIcons((self.layer))
             return
         }
+        self.shakeIcons((self.layer))
         deleteButton.hidden = false
         viewState = .Shaking
         
@@ -103,7 +103,7 @@ class PostItView: UIView {
         let startAngle: Float = (-2) * 3.14159/180
         let stopAngle = -startAngle
         shakeAnim.fromValue = NSNumber(float: startAngle)
-        shakeAnim.toValue = NSNumber(float: 3 * stopAngle)
+        shakeAnim.toValue = NSNumber(float: 2 * stopAngle)
         shakeAnim.autoreverses = true
         shakeAnim.duration = 0.2
         shakeAnim.repeatCount = 10000

@@ -147,13 +147,29 @@ class BoardViewController: UIViewController {
     }
     
     func tapGestureMenu(recognizer: UITapGestureRecognizer){
-        //TODO: Dar um aviso ao usuario antes de ir para a tela inicial
-        self.performSegueWithIdentifier(unwindSegueIdentifier, sender: self)
+        
+        let title = "Save and Quit ?"
+        let message = ""
+        let acceptButtonTitle = "OK"
+        let cancelButtonTitle = "Cancel"
+        
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let acceptAction = UIAlertAction(title: acceptButtonTitle, style: .Default) { _ in
+            self.performSegueWithIdentifier(self.unwindSegueIdentifier, sender: self)
+        }
+        
+        let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel) { _ in
+        }
+        
+        alertController.addAction(acceptAction)
+        alertController.addAction(cancelAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
     func tapGesture(recognizer: UITapGestureRecognizer){
-        
-        print(recognizer.allowedPressTypes)
         
         
         // Se houver um click e uma view ja estiver selecionada
