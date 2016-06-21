@@ -223,17 +223,26 @@ class BoardViewController: UIViewController {
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
+        // image here is your original image
+        let size = CGSizeApplyAffineTransform(newImage.size, CGAffineTransformMakeScale(0.5, 0.5))
+        let hasAlpha = false
+        let newScale: CGFloat = 0.0 // Automatically use scale factor of main screen
+        
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, newScale)
+        newImage.drawInRect(CGRect(origin: CGPointZero, size: size))
+        
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
         self.cursorView.alpha = 1
 
         
-        return newImage
+        return scaledImage
         
     }
     
     //MARK: Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
-        screenShotMethod()
         
         var newPostItItems = [PostItDataItem]()
         
@@ -248,8 +257,8 @@ class BoardViewController: UIViewController {
         self.customBoard.postIt = newPostItItems
         
         //Adiciona uma imagem preview para saber o estado da Board antes de abri-la
-        let image = screenShotMethod()
-        self.customBoard.previewImage = image
+        let preImage = screenShotMethod()
+        self.customBoard.previewImage = preImage
     }
     
 }

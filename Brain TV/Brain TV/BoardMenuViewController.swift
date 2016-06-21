@@ -21,6 +21,10 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     @IBOutlet weak var menuCollectionView: UICollectionView!
     @IBOutlet weak var imagePreview: UIImageView!
     
+    override func didReceiveMemoryWarning() {
+        print("\n\n\nRecebeu memory warning\n\n\n")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +56,7 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(DataItemCollectionViewCell.reuseIdentifier, forIndexPath: indexPath) as! DataItemCollectionViewCell
         
         if indexPath.row == firstCell{
-            cell.imageBoard.image = UIImage(named: "deleteButton")
+            cell.imageBoard.image = UIImage(named: "plus")
             cell.textBoard.text = "New Board"
             return cell
         }
@@ -93,11 +97,11 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         self.focusedCollectionViewCell = self.menuCollectionView.cellForItemAtIndexPath(indexPath) as? DataItemCollectionViewCell
         
         if(indexPath.row == firstCell){
-            imagePreview.image = UIImage(named: "deleteButton")
+            imagePreview.image = UIImage()
             return
         }
         
-        imagePreview.image = boardsSaved[indexPath.row - 1].previewImage
+        imagePreview.image = boardsSaved[indexPath.row - 1].backgroundImage
     }
 
     //MARK: Segue
@@ -127,16 +131,18 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         
         boardsSaved.insert(newBoard, atIndex: 0)
         
-        //boardsSaved.append(newBoard)
         
         BoardManager.sharedInstance.saveBoard(boardsSaved)
         
         
-        self.menuCollectionView.reloadData()
-        // Resolve problema de nao aparecer o ultimo elemento
-        self.menuCollectionView.reloadItemsAtIndexPaths(self.menuCollectionView.indexPathsForVisibleItems())
-
+        let reloadCollection = NSBlockOperation {
+            self.menuCollectionView.reloadData()
+            // Resolve problema de nao aparecer o ultimo elemento
+            self.menuCollectionView.reloadItemsAtIndexPaths(self.menuCollectionView.indexPathsForVisibleItems())
+        }
         
+        NSOperationQueue.mainQueue().addOperation(reloadCollection)
+    
     }
     
     //MARK: Gestures

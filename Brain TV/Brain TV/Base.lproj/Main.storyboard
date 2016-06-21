@@ -60,7 +60,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="0fj-bC-XdS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4077" y="-3671"/>
+            <point key="canvasLocation" x="4017" y="-3903"/>
         </scene>
         <!--Board Menu View Controller-->
         <scene sceneID="MZt-Ee-Guj">
@@ -74,27 +74,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6dr-5B-AP1">
-                                <rect key="frame" x="46" y="707" width="1874" height="373"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ic4-71-nac">
-                                    <size key="itemSize" width="166" height="198"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bbU-AG-giM">
+                                <rect key="frame" x="480" y="73" width="960" height="540"/>
+                                <color key="backgroundColor" red="0.89803921568627454" green="0.89411764705882357" blue="0.88235294117647056" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bbU-AG-giM" secondAttribute="height" multiplier="1920:1080" id="CvW-RT-tJy"/>
+                                </constraints>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6dr-5B-AP1">
+                                <rect key="frame" x="70" y="760" width="1780" height="270"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="20" id="ic4-71-nac">
+                                    <size key="itemSize" width="275" height="207"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BoardCollectionCell" id="e5o-FD-lfX" customClass="DataItemCollectionViewCell" customModule="Brain_TV" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="160" width="166" height="198"/>
+                                        <rect key="frame" x="0.0" y="32" width="275" height="207"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="166" height="198"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="275" height="207"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qtY-47-VBD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="166" height="147"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megapisos_morumbi_pisos_laminados_durafloor_way_patina_bege" translatesAutoresizingMaskIntoConstraints="NO" id="qtY-47-VBD">
+                                                    <rect key="frame" x="8" y="8" width="259" height="146"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="qtY-47-VBD" secondAttribute="height" multiplier="1920:1080" id="RvN-60-Kfa"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFY-6u-adg">
-                                                    <rect key="frame" x="62" y="159" width="42" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFY-6u-adg">
+                                                    <rect key="frame" x="0.0" y="173" width="275" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -102,6 +112,14 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="qtY-47-VBD" firstAttribute="top" secondItem="e5o-FD-lfX" secondAttribute="topMargin" id="2Tl-0v-2fJ"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="BFY-6u-adg" secondAttribute="bottom" constant="5" id="LTO-Y9-VY1"/>
+                                            <constraint firstItem="BFY-6u-adg" firstAttribute="centerX" secondItem="e5o-FD-lfX" secondAttribute="centerX" id="R5t-uY-B3a"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="qtY-47-VBD" secondAttribute="trailing" id="RdW-mq-Zvd"/>
+                                            <constraint firstItem="qtY-47-VBD" firstAttribute="leading" secondItem="e5o-FD-lfX" secondAttribute="leadingMargin" id="hsx-eS-NyT"/>
+                                            <constraint firstItem="BFY-6u-adg" firstAttribute="width" secondItem="e5o-FD-lfX" secondAttribute="width" id="nf7-ju-u6h"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="imageBoard" destination="qtY-47-VBD" id="ha6-oa-aL5"/>
                                             <outlet property="textBoard" destination="BFY-6u-adg" id="d2e-u8-oQi"/>
@@ -113,10 +131,17 @@
                                     <outlet property="delegate" destination="e7B-TO-9GM" id="0eG-nl-YX6"/>
                                 </connections>
                             </collectionView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bbU-AG-giM">
-                                <rect key="frame" x="590" y="214" width="653" height="399"/>
-                            </imageView>
                         </subviews>
+                        <color key="backgroundColor" red="0.83137254900000002" green="0.80784313730000001" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="6dr-5B-AP1" firstAttribute="top" secondItem="bbU-AG-giM" secondAttribute="bottom" constant="147" id="2eZ-TN-u6D"/>
+                            <constraint firstItem="bbU-AG-giM" firstAttribute="width" secondItem="NSr-Ee-0Fp" secondAttribute="width" multiplier="0.5" id="Aed-lA-7BS"/>
+                            <constraint firstItem="bbU-AG-giM" firstAttribute="centerX" secondItem="NSr-Ee-0Fp" secondAttribute="centerX" id="Aht-TR-aXo"/>
+                            <constraint firstItem="6dr-5B-AP1" firstAttribute="leading" secondItem="NSr-Ee-0Fp" secondAttribute="leadingMargin" constant="50" id="WGH-rN-cYd"/>
+                            <constraint firstItem="vpf-Uq-q6x" firstAttribute="top" secondItem="6dr-5B-AP1" secondAttribute="bottom" constant="50" id="diU-V6-QG5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6dr-5B-AP1" secondAttribute="trailing" constant="50" id="kaa-KA-vay"/>
+                            <constraint firstItem="6dr-5B-AP1" firstAttribute="height" secondItem="NSr-Ee-0Fp" secondAttribute="height" multiplier="0.25" id="mX9-vl-cMe"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Z5K-hp-QWM"/>
                     <connections>
@@ -144,7 +169,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gwJ-qM-K74">
                                 <rect key="frame" x="0.0" y="145" width="1285" height="935"/>
-                                <color key="backgroundColor" red="0.83137254900000002" green="0.80784313730000001" blue="0.74509803919999995" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4st-Vl-cEp">
                                 <rect key="frame" x="163" y="195" width="960" height="540"/>
@@ -200,7 +224,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R4r-Pf-CKp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1310.5" y="-3983"/>
+            <point key="canvasLocation" x="1724.5" y="-3903"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Abs-P4-qvc">
@@ -241,7 +265,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell alpha="0.0" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MasterEditBoardTableViewCell" id="20k-6l-mMH" customClass="MasterEditBoardTableViewCell" customModule="Brain_TV" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="199" width="574" height="66"/>
+                                        <rect key="frame" x="0.0" y="54" width="574" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="20k-6l-mMH" id="Fkd-wJ-jRj">
                                             <rect key="frame" x="0.0" y="0.0" width="558" height="66"/>
@@ -320,9 +344,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="megapisos_morumbi_pisos_laminados_durafloor_way_patina_bege" width="775" height="460"/>
         <image name="megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca" width="775" height="460"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="puF-Lv-Bhy"/>
+        <segue reference="jki-MD-URU"/>
     </inferredMetricsTieBreakers>
 </document>
