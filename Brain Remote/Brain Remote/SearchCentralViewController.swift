@@ -18,6 +18,7 @@ class SearchCentralViewController: UITableViewController {
         
     }
     
+    
     private func remoteInit(){
         
         // Inicializa controle
@@ -29,19 +30,22 @@ class SearchCentralViewController: UITableViewController {
         
         
         // Notificacoes
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchCentralViewController.foundService(_:)), name: VgcPeripheralFoundService, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchCentralViewController.servicesChange(_:)), name: VgcPeripheralFoundService, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchCentralViewController.servicesChange(_:)), name: VgcPeripheralLostService, object: nil)
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchCentralViewController.peripheralDidConnect(_:)), name: VgcPeripheralDidConnectNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SearchCentralViewController.peripheralDidDisconnect(_:)), name: VgcPeripheralDidDisconnectNotification, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         
+        tableView.reloadData()
+
         // Comeca a procurar por centrals
         VgcManager.peripheral.browseForServices()
     }
     
-    func foundService(notification: NSNotification){
+    func servicesChange(notification: NSNotification){
         //encontrou novo servico
         
         let vgcService = notification.object as? VgcService
@@ -56,20 +60,14 @@ class SearchCentralViewController: UITableViewController {
         
     }
     
+    
     func peripheralDidConnect(notification: NSNotification){
         //Se conectou em uma central
         
         //Para de procurar por centrais
-        VgcManager.peripheral.stopBrowsingForServices()
+        //VgcManager.peripheral.stopBrowsingForServices()
         
-        //Troca de View.
-        performSegueWithIdentifier("PostItSegue", sender: self)
         
-    }
-    func peripheralDidDisconnect(notification: NSNotification){
-        print("Controle desconectado");
-        
-        //TODO: Indicar para o usuario que o controle foi desconectado
     }
     
     //MARK: Table View data source
@@ -98,7 +96,16 @@ class SearchCentralViewController: UITableViewController {
     //MARK: Table view delegate
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        VgcManager.peripheral.connectToService(VgcManager.peripheral.availableServices[indexPath.row])
+        if !VgcManager.peripheral.haveConnectionToCentral{
+            VgcManager.peripheral.connectToService(VgcManager.peripheral.availableServices[indexPath.row])
+        }
+        //Troca de View.
+        VgcManager.peripheral.stopBrowsingForServices()
+        performSegueWithIdentifier("PostItSegue", sender: self)
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
 }

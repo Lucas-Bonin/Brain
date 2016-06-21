@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GameController
+import VirtualGameController
 
 class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIGestureRecognizerDelegate {
     //TODO: Fazer o load das boards salvas
@@ -27,6 +29,10 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        // Inicializa Central
+        VgcManager.startAs(.Central, appIdentifier: "bRainLucas", customElements: CustomElements(), customMappings: CustomMappings(), includesPeerToPeer: true)
         
         // Load das boards salvas
         if let boards = BoardManager.sharedInstance.loadBoard(){
@@ -97,7 +103,7 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         self.focusedCollectionViewCell = self.menuCollectionView.cellForItemAtIndexPath(indexPath) as? DataItemCollectionViewCell
         
         if(indexPath.row == firstCell){
-            imagePreview.image = UIImage()
+            imagePreview.image = UIImage(named:"Brainstorm")
             return
         }
         
@@ -118,6 +124,8 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+        
+        
         // Salva board quando voltar para a tela principal
         guard let viewController = segue.sourceViewController as? BoardViewController else {return}
         let newBoard = viewController.customBoard
@@ -156,8 +164,8 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         }
         
         // Mostra um Alert view
-        let title = ""
-        let message = ""
+//        let title = ""
+//        let message = ""
         let cancelButtonTitle = "Cancel"
         let deleteButtonTitle = "Delete"
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .Alert)
@@ -180,10 +188,6 @@ class BoardMenuViewController: UIViewController, UICollectionViewDelegate, UICol
         alertController.addAction(deleteAction)
         
         presentViewController(alertController, animated: true, completion: nil)
-        
-        
-        
-        
         
     }
     

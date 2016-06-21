@@ -148,6 +148,9 @@ class BoardViewController: UIViewController {
     
     func tapGestureMenu(recognizer: UITapGestureRecognizer){
         
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+
+        
         let title = "Save and Quit ?"
         let message = ""
         let acceptButtonTitle = "OK"
@@ -196,9 +199,9 @@ class BoardViewController: UIViewController {
             return
         }
         
+        
+        // Delete postIt
         if let delButton = tappedView as? DeleteButtonView{
-            
-            
             
             delButton.destroyView()
             self.dellButton = false
@@ -277,15 +280,20 @@ class BoardViewController: UIViewController {
         self.customBoard.previewImage = preImage
     }
     
+    //MARK: Removendo notificacoes
+    
+    deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        Elements.customElements.valueChangedHandler = nil
+    }
 }
 
 
 // Funcoes para VirtualGameController
 extension BoardViewController{
     private func centralInit(){
-        
-        // Inicializa Central
-        VgcManager.startAs(.Central, appIdentifier: "bRainLucas", customElements: CustomElements(), customMappings: CustomMappings(), includesPeerToPeer: true)
+ 
         
         // Notificacoes quando um controle conectar ou desconectar
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector (BoardViewController.controllerDidConnect(_:)), name: VgcControllerDidConnectNotification, object: nil)
@@ -356,7 +364,6 @@ extension BoardViewController{
         print("Controle desconectado: \(newController.deviceInfo.vendorName)")
     }
 
-
 }
 
 // Funcao para reconhecer subviews quando clicar na tela
@@ -384,5 +391,6 @@ extension UIView {
         }
         return hitView
     }
+    
 }
 

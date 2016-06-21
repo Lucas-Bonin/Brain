@@ -77,6 +77,26 @@ class SendPostItViewController: UIViewController {
         self.number = 5
         
     }
+    
+    override func viewDidLoad() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SendPostItViewController.peripheralDidDisconnect(_:)), name: VgcPeripheralDidDisconnectNotification, object: nil)
+
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+
+    }
 
     
+}
+
+// Notificacoes para o controle
+extension SendPostItViewController{
+    func peripheralDidDisconnect(notification: NSNotification){
+        print("\n\n\nControle desconectado\n\n\n");
+        print(navigationController)
+        navigationController?.popToRootViewControllerAnimated(true)
+    }
+
 }

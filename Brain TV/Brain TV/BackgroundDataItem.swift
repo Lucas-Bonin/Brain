@@ -22,7 +22,10 @@ extension BackgroundDataItem{
         return [
             BackgroundDataItem(title: "t1", image: UIImage(named: "megapisos_morumbi_pisos_laminados_durafloor_way_patina_bege")),
             BackgroundDataItem(title: "t2", image: UIImage(named: "megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca")),
-            BackgroundDataItem(title: "t3", image: UIImage(named: "megapisos_morumbi_pisos_laminados_durafloor_way_patina_perola"))
+            BackgroundDataItem(title: "t3", image: UIImage(named: "megapisos_morumbi_pisos_laminados_durafloor_way_patina_perola")),
+            BackgroundDataItem(title: "t4", image: UIImage(named: "Blackboard")),
+            BackgroundDataItem(title: "t5", image: UIImage(named: "PaperSheet")),
+            BackgroundDataItem(title: "t6", image: UIImage(named: "WhiteWall"))
         ]
     }()
 }

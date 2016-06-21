@@ -20,10 +20,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ov7-K1-C8C" userLabel="Header View">
-                                <rect key="frame" x="0.0" y="0.0" width="1920" height="50"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Board" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zxd-fC-hXn">
-                                        <rect key="frame" x="897" y="7" width="127" height="36"/>
+                                        <rect key="frame" x="897" y="17" width="127" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -32,12 +32,12 @@
                                 <color key="backgroundColor" red="0.83137254901960789" green="0.80784313725490198" blue="0.74509803921568629" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Zxd-fC-hXn" firstAttribute="centerY" secondItem="ov7-K1-C8C" secondAttribute="centerY" id="2p9-D1-MmZ"/>
-                                    <constraint firstAttribute="height" constant="50" id="8MA-j4-wXk"/>
+                                    <constraint firstAttribute="height" constant="70" id="8MA-j4-wXk"/>
                                     <constraint firstItem="Zxd-fC-hXn" firstAttribute="centerX" secondItem="ov7-K1-C8C" secondAttribute="centerX" id="wHZ-Aq-p7k"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca" translatesAutoresizingMaskIntoConstraints="NO" id="UfY-Tt-9fM">
-                                <rect key="frame" x="0.0" y="50" width="1920" height="1030"/>
+                            <imageView userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="megapisos_morumbi_pisos_laminados_durafloor_way_patina_bege" translatesAutoresizingMaskIntoConstraints="NO" id="UfY-Tt-9fM">
+                                <rect key="frame" x="0.0" y="70" width="1920" height="1010"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -240,7 +240,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4R5-Ba-SRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-818" y="-2279"/>
+            <point key="canvasLocation" x="-230" y="-2373"/>
         </scene>
         <!--Master Edit Board View Controller-->
         <scene sceneID="ioH-SD-n5t">
@@ -268,7 +268,7 @@
                                         <rect key="frame" x="0.0" y="54" width="574" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="20k-6l-mMH" id="Fkd-wJ-jRj">
-                                            <rect key="frame" x="0.0" y="0.0" width="574" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="558" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loG-x9-ehd">
@@ -309,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AdD-ei-TEZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="630" y="-2327"/>
+            <point key="canvasLocation" x="703" y="-2373"/>
         </scene>
         <!--Edit Split View Controller-->
         <scene sceneID="s00-dH-yIt">
@@ -345,9 +345,8 @@
     </scenes>
     <resources>
         <image name="megapisos_morumbi_pisos_laminados_durafloor_way_patina_bege" width="775" height="460"/>
-        <image name="megapisos_morumbi_pisos_laminados_durafloor_way_patina_branca" width="775" height="460"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="jki-MD-URU"/>
+        <segue reference="puF-Lv-Bhy"/>
     </inferredMetricsTieBreakers>
 </document>
