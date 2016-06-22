@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hzU-eh-4cs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hzU-eh-4cs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xnC-sj-M8l" id="qFC-s5-bSr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -37,7 +37,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UCh-Q5-Vc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1408" y="369"/>
+            <point key="canvasLocation" x="1286" y="353"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EAU-N8-1tI">
@@ -181,10 +181,11 @@
                                 <rect key="frame" x="120" y="129" width="360" height="128"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="P61-xp-Uzs">
-                                        <rect key="frame" x="10" y="0.0" width="340" height="128"/>
+                                        <rect key="frame" x="10" y="32" width="340" height="96"/>
                                         <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="0.0" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                     </textView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431369999995" green="0.89019607840000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -193,7 +194,13 @@
                                     <constraint firstItem="P61-xp-Uzs" firstAttribute="leading" secondItem="Rlb-JU-VRP" secondAttribute="leading" constant="10" id="dQU-sb-7Rk"/>
                                     <constraint firstItem="P61-xp-Uzs" firstAttribute="top" secondItem="Rlb-JU-VRP" secondAttribute="top" id="tMg-Fs-cWU"/>
                                     <constraint firstAttribute="trailing" secondItem="P61-xp-Uzs" secondAttribute="trailing" constant="10" id="ttR-Q9-BhS"/>
+                                    <constraint firstItem="P61-xp-Uzs" firstAttribute="height" secondItem="Rlb-JU-VRP" secondAttribute="height" multiplier="0.75" id="yKa-fU-fYe"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tMg-Fs-cWU"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
