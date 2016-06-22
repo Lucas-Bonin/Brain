@@ -87,7 +87,15 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="raw-2p-4dW">
                                         <rect key="frame" x="494" y="5" width="86" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Qhx-EW-0UR"/>
+                                        </constraints>
                                         <state key="normal" image="5"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Qhx-EW-0UR"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="withoutCollor:" destination="6aL-RK-vKw" eventType="touchUpInside" id="K5l-pC-U0M"/>
                                         </connections>
@@ -132,8 +140,10 @@
                                 <constraints>
                                     <constraint firstItem="aDc-mu-oPz" firstAttribute="centerY" secondItem="sS9-sB-zAy" secondAttribute="centerY" id="0ab-Dk-1fa"/>
                                     <constraint firstItem="cva-nI-Hcc" firstAttribute="centerY" secondItem="q4T-Sp-Y4L" secondAttribute="centerY" id="20D-GY-qvj"/>
+                                    <constraint firstItem="raw-2p-4dW" firstAttribute="height" secondItem="aDc-mu-oPz" secondAttribute="height" id="334-nq-6Iv"/>
                                     <constraint firstItem="cva-nI-Hcc" firstAttribute="width" secondItem="cNN-yL-da8" secondAttribute="width" id="3TL-aM-cxh"/>
                                     <constraint firstItem="q4T-Sp-Y4L" firstAttribute="width" secondItem="cva-nI-Hcc" secondAttribute="width" id="9vd-Io-aOW"/>
+                                    <constraint firstItem="raw-2p-4dW" firstAttribute="height" secondItem="aDc-mu-oPz" secondAttribute="height" id="Adc-SN-7U4"/>
                                     <constraint firstItem="raw-2p-4dW" firstAttribute="centerY" secondItem="aDc-mu-oPz" secondAttribute="centerY" id="EQz-HB-h3O"/>
                                     <constraint firstItem="cNN-yL-da8" firstAttribute="centerY" secondItem="cva-nI-Hcc" secondAttribute="centerY" id="EhK-rp-x8D"/>
                                     <constraint firstItem="q4T-Sp-Y4L" firstAttribute="top" secondItem="ZQc-Ds-zRU" secondAttribute="top" id="HxF-jq-6U0"/>
@@ -163,6 +173,7 @@
                                     <mask key="constraints">
                                         <exclude reference="VX7-cO-hOm"/>
                                         <exclude reference="Phc-b2-nS3"/>
+                                        <exclude reference="Adc-SN-7U4"/>
                                     </mask>
                                 </variation>
                             </view>
