@@ -79,6 +79,9 @@ class SendPostItViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
+        textView.becomeFirstResponder()
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SendPostItViewController.peripheralDidDisconnect(_:)), name: VgcPeripheralDidDisconnectNotification, object: nil)
 
     }
