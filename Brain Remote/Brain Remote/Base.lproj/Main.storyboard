@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hzU-eh-4cs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="hzU-eh-4cs">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xnC-sj-M8l" id="qFC-s5-bSr">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -156,6 +156,7 @@
                                     <constraint firstAttribute="height" constant="60" id="idH-fb-Fxw"/>
                                     <constraint firstItem="cNN-yL-da8" firstAttribute="width" secondItem="sS9-sB-zAy" secondAttribute="width" id="n4O-9y-Ozs"/>
                                     <constraint firstItem="cNN-yL-da8" firstAttribute="height" secondItem="cva-nI-Hcc" secondAttribute="height" id="pZf-rS-jIZ"/>
+                                    <constraint firstItem="raw-2p-4dW" firstAttribute="height" secondItem="aDc-mu-oPz" secondAttribute="height" id="qgj-Hk-1Jq"/>
                                     <constraint firstItem="aDc-mu-oPz" firstAttribute="height" secondItem="sS9-sB-zAy" secondAttribute="height" id="scv-ZM-QuT"/>
                                     <constraint firstItem="q4T-Sp-Y4L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZQc-Ds-zRU" secondAttribute="leading" id="yKZ-Qt-Z51"/>
                                 </constraints>
